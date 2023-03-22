@@ -1,24 +1,48 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import { TASKS } from "../constants/routeNames";
+import {
+  CardStyleInterpolators,
+  createStackNavigator,
+} from "@react-navigation/stack";
+import { ADDTOTASKS, TASKS } from "../constants/routeNames";
 import Tasks from "../screens/Tasks";
 import { colors } from "../theme/theme";
+import AddToTasks from "../screens/AddToTasks";
+import { enableScreens } from "react-native-screens";
+enableScreens();
 
-const TasksNavigator = () => {
+const TasksNavigator = ({ navigation, route }) => {
   const TasksStack = createStackNavigator();
 
   return (
     <TasksStack.Navigator
-      screenOptions={{ cardStyle: { backgroundColor: "ghostwhite" } }}
+      initialRouteName={TASKS}
+      screenOptions={{
+        cardStyle: { backgroundColor: `${colors.secondaryColor}` },
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      }}
     >
       <TasksStack.Screen
         name={TASKS}
         component={Tasks}
         options={{
+          headerTitle: "Tasks",
+          headerTitleStyle: {
+            fontFamily: "colfax-bold",
+          },
+          headerStyle: {
+            backgroundColor: `${colors.secondaryColor}`,
+            elevation: 0,
+          },
+        }}
+      />
+      <TasksStack.Screen
+        name={ADDTOTASKS}
+        component={AddToTasks}
+        options={{
           headerTitle: "",
           headerStyle: {
             backgroundColor: `${colors.secondaryColor}`,
+            elevation: 0,
           },
         }}
       />

@@ -1,13 +1,15 @@
 import "react-native-gesture-handler";
-import TabNavigator from "./src/navigations/TabNavigator";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { setCustomText } from "react-native-global-props";
 import { NativeBaseProvider } from "native-base";
 import { useCallback } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import DrawerNavigator from "./src/navigations/DrawerNavigator";
 import { nativebaseTheme } from "./src/theme/theme";
+import { enableScreens } from "react-native-screens";
+import GlobalProvider from "./src/context/context";
+import MainNavigator from "./src/navigations/MainNavigator";
+enableScreens();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -40,7 +42,9 @@ export default function App() {
   return (
     <NativeBaseProvider theme={nativebaseTheme}>
       <NavigationContainer>
-        <DrawerNavigator />
+        <GlobalProvider>
+          <MainNavigator />
+        </GlobalProvider>
       </NavigationContainer>
     </NativeBaseProvider>
   );

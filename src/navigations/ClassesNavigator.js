@@ -1,14 +1,50 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  CardStyleInterpolators,
+  createStackNavigator,
+} from "@react-navigation/stack";
 import Classes from "../screens/Classes";
-import { CLASSES } from "../constants/routeNames";
+import { ADDTOCLASSES, CLASSES } from "../constants/routeNames";
+import { colors } from "../theme/theme";
+import { enableScreens } from "react-native-screens";
+import AddToClasses from "../screens/AddToClasses";
+enableScreens();
 
 const ClassesNavigator = () => {
   const ClassesStack = createStackNavigator();
   return (
-    <ClassesStack.Navigator>
-      <ClassesStack.Screen name={CLASSES} component={Classes} />
+    <ClassesStack.Navigator
+      screenOptions={{
+        cardStyle: { backgroundColor: `${colors.secondaryColor}` },
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      }}
+    >
+      <ClassesStack.Screen
+        name={CLASSES}
+        component={Classes}
+        options={{
+          headerTitle: "Classes",
+          headerTitleStyle: {
+            fontFamily: "colfax-bold",
+          },
+          headerStyle: {
+            backgroundColor: `${colors.secondaryColor}`,
+            elevation: 0,
+          },
+        }}
+      />
+      <ClassesStack.Screen
+        name={ADDTOCLASSES}
+        component={AddToClasses}
+        options={{
+          headerTitle: "",
+          headerStyle: {
+            backgroundColor: `${colors.secondaryColor}`,
+            elevation: 0,
+          },
+        }}
+      />
     </ClassesStack.Navigator>
   );
 };
