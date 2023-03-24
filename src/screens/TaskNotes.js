@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const Faqs = () => {
+const TaskNotes = () => {
   return (
     <View>
-      <Text>Faqs</Text>
+      <Text>TaskNotes</Text>
     </View>
   );
 };
 
-export default Faqs;
+export default TaskNotes;
 
 const styles = StyleSheet.create({});

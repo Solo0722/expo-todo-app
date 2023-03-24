@@ -5,7 +5,6 @@ import DrawerNavigator from "./DrawerNavigator";
 
 const MainNavigator = () => {
   const { loggedInUser } = useContext(GlobalContext);
-  console.log(loggedInUser);
 
   return <>{loggedInUser ? <DrawerNavigator /> : <AuthNavigator />}</>;
 };

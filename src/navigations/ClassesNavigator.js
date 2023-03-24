@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import {
   CardStyleInterpolators,
@@ -24,7 +23,8 @@ const ClassesNavigator = () => {
         name={CLASSES}
         component={Classes}
         options={{
-          headerTitle: "Classes",
+          headerShown: false,
+          headerTitle: "",
           headerTitleStyle: {
             fontFamily: "colfax-bold",
           },

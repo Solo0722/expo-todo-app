@@ -40,11 +40,6 @@ const Drawerbar = () => {
       onPress: () => Linking.openURL("mailto:owusuansahsolomon39@gmail.com"),
     },
     {
-      name: "FAQs",
-      iconName: "help-circle",
-      onPress: () => navigate(FAQS),
-    },
-    {
       name: "Settings",
       iconName: "settings-sharp",
       onPress: () => navigate(SETTINGS),
@@ -58,7 +53,6 @@ const Drawerbar = () => {
         backgroundColor={"primary.400"}
         alignItems={"flex-start"}
         justifyContent={"flex-end"}
-        // p={10}
         mb={5}
       >
         <Heading

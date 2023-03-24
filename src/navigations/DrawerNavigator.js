@@ -2,30 +2,45 @@ import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import {
   DONATE,
-  FAQS,
-  MINENAVIGATOR,
   PROFILE,
   SETTINGS,
   TABNAVIGATOR,
 } from "../constants/routeNames";
 import TabNavigator from "./TabNavigator";
 import Drawerbar from "../components/Drawerbar";
-import MineNavigator from "./MineNavigator";
 import { enableScreens } from "react-native-screens";
 import Profile from "../screens/Profile";
 import Settings from "../screens/Settings";
 import Donate from "../screens/Donate";
-import Faqs from "../screens/Faqs";
 import BackButton from "../components/BackButton";
+import { colors } from "../theme/theme";
 enableScreens();
 
 const DrawerNavigator = () => {
   const Drawer = createDrawerNavigator();
   const getDrawerbar = () => <Drawerbar />;
 
+  const defaultOptions = {
+    headerShown: true,
+  };
+
   return (
     <Drawer.Navigator
-      screenOptions={{ headerShown: false }}
+      screenOptions={{
+        headerShown: false,
+        headerLeft: () => <BackButton />,
+        sceneContainerStyle: {
+          backgroundColor: `${colors.secondaryColor}`,
+        },
+        headerStyle: {
+          backgroundColor: `${colors.secondaryColor}`,
+          elevation: 0,
+        },
+        headerTitleStyle: {
+          fontFamily: "colfax-bold",
+          fontSize: 18,
+        },
+      }}
       initialRouteName={TABNAVIGATOR}
       drawerContent={getDrawerbar}
     >
@@ -33,22 +48,17 @@ const DrawerNavigator = () => {
       <Drawer.Screen
         name={PROFILE}
         component={Profile}
-        options={{ headerShown: true, headerLeft: () => <BackButton /> }}
+        options={{ ...defaultOptions }}
       />
       <Drawer.Screen
         name={SETTINGS}
         component={Settings}
-        options={{ headerShown: true, headerLeft: () => <BackButton /> }}
+        options={{ ...defaultOptions }}
       />
       <Drawer.Screen
         name={DONATE}
         component={Donate}
-        options={{ headerShown: true, headerLeft: () => <BackButton /> }}
-      />
-      <Drawer.Screen
-        name={FAQS}
-        component={Faqs}
-        options={{ headerShown: true, headerLeft: () => <BackButton /> }}
+        options={{ ...defaultOptions }}
       />
     </Drawer.Navigator>
   );

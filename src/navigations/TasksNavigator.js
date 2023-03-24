@@ -3,14 +3,16 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from "@react-navigation/stack";
-import { ADDTOTASKS, TASKS } from "../constants/routeNames";
+import { ADDTOTASKS, TASKNOTES, TASKS } from "../constants/routeNames";
 import Tasks from "../screens/Tasks";
 import { colors } from "../theme/theme";
 import AddToTasks from "../screens/AddToTasks";
 import { enableScreens } from "react-native-screens";
+import TaskNotes from "../screens/TaskNotes";
+import BackButton from "../components/BackButton";
 enableScreens();
 
-const TasksNavigator = ({ navigation, route }) => {
+const TasksNavigator = () => {
   const TasksStack = createStackNavigator();
 
   return (
@@ -25,13 +27,14 @@ const TasksNavigator = ({ navigation, route }) => {
         name={TASKS}
         component={Tasks}
         options={{
-          headerTitle: "Tasks",
+          headerTitle: "",
           headerTitleStyle: {
             fontFamily: "colfax-bold",
           },
           headerStyle: {
             backgroundColor: `${colors.secondaryColor}`,
             elevation: 0,
+            // height: 40,
           },
         }}
       />
@@ -44,6 +47,19 @@ const TasksNavigator = ({ navigation, route }) => {
             backgroundColor: `${colors.secondaryColor}`,
             elevation: 0,
           },
+          headerLeft: () => <BackButton />,
+        }}
+      />
+      <TasksStack.Screen
+        name={TASKNOTES}
+        component={TaskNotes}
+        options={{
+          headerTitle: "",
+          headerStyle: {
+            backgroundColor: `${colors.secondaryColor}`,
+            elevation: 0,
+          },
+          headerLeft: () => <BackButton />,
         }}
       />
     </TasksStack.Navigator>

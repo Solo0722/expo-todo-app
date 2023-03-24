@@ -1,5 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, { createContext, useState, useMemo } from "react";
+import React, { createContext, useMemo } from "react";
 import { usePersistedState } from "../helpers/hooks/usePersistedState";
 
 export const GlobalContext = createContext({});
@@ -9,10 +8,29 @@ const GlobalProvider = ({ children }) => {
     "loggedInUser",
     null
   );
+  const [tasks, setTasks] = usePersistedState("tasks", []);
+  const [taskCategories, setTaskCategories] = usePersistedState(
+    "taskCategories",
+    []
+  );
 
   const contextProviderValue = useMemo(
-    () => ({ loggedInUser, setLoggedInUser }),
-    [loggedInUser, setLoggedInUser]
+    () => ({
+      loggedInUser,
+      setLoggedInUser,
+      taskCategories,
+      tasks,
+      setTaskCategories,
+      setTasks,
+    }),
+    [
+      loggedInUser,
+      setLoggedInUser,
+      taskCategories,
+      tasks,
+      setTaskCategories,
+      setTasks,
+    ]
   );
 
   return (

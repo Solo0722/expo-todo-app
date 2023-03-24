@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
 import React from "react";
 import SvgImg from "../assets/images/reading.svg";
-import { Heading, View, VStack } from "native-base";
+import { Center, Heading, VStack } from "native-base";
 
 const EmptyTasks = () => {
   return (
-    <View flex={1} alignItems="center" justifyContent="center">
+    <Center flex={1} alignItems="center" justifyContent="center">
       <VStack space={2}>
         <SvgImg width={200} height={200} />
         <Heading
@@ -25,7 +25,7 @@ const EmptyTasks = () => {
           Click the + to create tasks.
         </Heading>
       </VStack>
-    </View>
+    </Center>
   );
 };
 

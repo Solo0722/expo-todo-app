@@ -1,8 +1,8 @@
-import { SANITY_TOKEN } from "@env";
-import { SanityClient } from "@sanity/client";
+import { SANITY_TOKEN, SANITY_ID } from "@env";
+import { createClient } from "@sanity/client";
 
-export const client = SanityClient({
-  projectId: "oybefvus",
+export const client = createClient({
+  projectId: SANITY_ID,
   dataset: "production",
   apiVersion: "2023-03-22",
   useCdn: true,

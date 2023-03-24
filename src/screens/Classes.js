@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 import React from "react";
 import {
   Box,
-  Checkbox,
   FlatList,
   Heading,
   HStack,
@@ -16,6 +15,7 @@ import FabComp from "../components/FabComp";
 import { ADDTOCLASSES } from "../constants/routeNames";
 import EmptyTasks from "../components/EmptyTasks";
 import moment from "moment";
+import { colors } from "../theme/theme";
 
 const Classes = ({ navigation }) => {
   const data = [
@@ -61,26 +61,16 @@ const Classes = ({ navigation }) => {
     },
   ];
 
-  const renderItem = ({ item, index }) => (
+  const renderItem = ({ item }) => (
     <Pressable
       w="full"
-      bgColor={"coolGray.100"}
-      // borderRadius="10"
+      bgColor={`${colors.itemColor}`}
       android_ripple={{ color: "#9ca3af" }}
-      // borderRadius="10"
-      borderLeftColor={"amber.500"}
+      borderLeftColor={"fuchsia.500"}
       borderLeftWidth={"3"}
     >
       <Box pl="4" pr="5" py="2" height={"64px"}>
         <HStack alignItems="center" space={3}>
-          {/* <Checkbox
-            // value="danger"
-            colorScheme="coolGray"
-            // defaultIsChecked
-            aria-label="completed?"
-            rounded={"full"}
-            size={"sm"}
-          /> */}
           <VStack space={1}>
             <Text
               color="coolGray.800"
@@ -127,7 +117,6 @@ const Classes = ({ navigation }) => {
           </Heading>
         }
         ItemSeparatorComponent={<View pt={1} pb={1} />}
-        collapsable
         data={data}
         renderItem={renderItem}
         style={{ width: "100%" }}

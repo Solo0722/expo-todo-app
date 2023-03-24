@@ -1,11 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import React, { useLayoutEffect } from "react";
+import React from "react";
 import {
-  ADDTOTASKS,
   CALENDARNAVIGATOR,
   CLASSESNAVIGATOR,
   MINENAVIGATOR,
-  TASKS,
   TASKSNAVIGATOR,
 } from "../constants/routeNames";
 import CalendarNavigator from "./CalendarNavigator";
@@ -16,7 +14,6 @@ import TabBar from "../components/TabBar";
 
 const TabNavigator = ({ navigation, route }) => {
   const Tab = createBottomTabNavigator();
-  const getTabBar = () => <TabBar />;
 
   return (
     <Tab.Navigator
@@ -39,10 +36,10 @@ const TabNavigator = ({ navigation, route }) => {
         },
       }}
     >
-      <Tab.Screen name={MINENAVIGATOR} component={MineNavigator} />
       <Tab.Screen name={TASKSNAVIGATOR} component={TasksNavigator} />
       <Tab.Screen name={CALENDARNAVIGATOR} component={CalendarNavigator} />
       <Tab.Screen name={CLASSESNAVIGATOR} component={ClassesNavigator} />
+      <Tab.Screen name={MINENAVIGATOR} component={MineNavigator} />
     </Tab.Navigator>
   );
 };

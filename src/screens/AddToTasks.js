@@ -1,12 +1,9 @@
 import { StyleSheet } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  Box,
   Button,
-  Center,
   Divider,
   FlatList,
-  HamburgerIcon,
   Heading,
   HStack,
   Icon,
@@ -14,47 +11,73 @@ import {
   Input,
   Menu,
   Pressable,
-  ScrollView,
   Text,
   View,
   VStack,
+  Checkbox,
+  useDisclose,
 } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
-import BackButton from "../components/BackButton";
+import { colors } from "../theme/theme";
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
+import moment from "moment";
+import AddSubTaskModal from "../components/modals/AddSubTaskModal";
+import AttachmentsActionSheet from "../components/AttachmentsActionSheet";
+import { TASKNOTES } from "../constants/routeNames";
 
 const AddToTasks = ({ navigation }) => {
+  const [date, setDate] = useState(new Date());
+  const [subTasks, setSubTasks] = useState([]);
+  const [showAddSubTaskModal, setShowAddSubTaskModal] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclose();
+
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Menu
-          // w="190"
-          trigger={(triggerProps) => {
-            return (
-              <IconButton
-                accessibilityLabel="More options menu"
-                {...triggerProps}
-                variant={"ghost"}
-                colorScheme={"coolGray"}
-                rounded={"full"}
-                icon={<Icon as={Ionicons} name="ellipsis-vertical-sharp" />}
+        <HStack space={2}>
+          <IconButton
+            variant={"subtle"}
+            colorScheme={"success"}
+            rounded={"full"}
+            icon={
+              <Icon
+                as={Ionicons}
+                name={"checkmark-sharp"}
+                color={"success.500"}
+                size={"sm"}
               />
-            );
-          }}
-        >
-          <Menu.Item>Arial</Menu.Item>
-          <Menu.Item>Nunito Sans</Menu.Item>
-          <Menu.Item>Roboto</Menu.Item>
-          <Menu.Item>Poppins</Menu.Item>
-          <Menu.Item>SF Pro</Menu.Item>
-          <Menu.Item>Helvetica</Menu.Item>
-          <Menu.Item isDisabled>Sofia</Menu.Item>
-          <Menu.Item>Cookie</Menu.Item>
-        </Menu>
+            }
+          />
+          <Menu
+            // w="190"
+            bgColor={`${colors.secondaryColor}`}
+            placement="bottom left"
+            mr={"5"}
+            safeAreaRight
+            trigger={(triggerProps) => {
+              return (
+                <IconButton
+                  accessibilityLabel="More options menu"
+                  {...triggerProps}
+                  variant={"ghost"}
+                  colorScheme={"coolGray"}
+                  rounded={"full"}
+                  icon={<Icon as={Ionicons} name="ellipsis-vertical-sharp" />}
+                />
+              );
+            }}
+          >
+            <Menu.Item>Mark as Done</Menu.Item>
+            <Menu.Item>Duplicate Task</Menu.Item>
+            <Menu.Item>Print</Menu.Item>
+            <Menu.Item>Share</Menu.Item>
+            <Menu.Item>Delete</Menu.Item>
+          </Menu>
+        </HStack>
       ),
       headerRightContainerStyle: {
         marginRight: 10,
       },
-      headerLeft: () => <BackButton />,
     });
   }, []);
 
@@ -64,20 +87,23 @@ const AddToTasks = ({ navigation }) => {
       iconName: "add-sharp",
       hasButton: false,
       hasDescription: false,
+      onPress: () => setShowAddSubTaskModal(true),
     },
     {
       name: "Due Date",
       iconName: "md-calendar-sharp",
       hasButton: false,
       hasDescription: true,
-      description: "2023/02/08",
+      description: moment(date).format("YYYY/MM/DD"),
+      onPress: () => showDatepicker(),
     },
     {
       name: "Time & Reminder",
       iconName: "time-sharp",
       hasButton: false,
       hasDescription: true,
-      description: "No",
+      description: moment(date).format("hh:mm A"),
+      onPress: () => showTimepicker(),
     },
     {
       name: "Repeat Task",
@@ -91,17 +117,23 @@ const AddToTasks = ({ navigation }) => {
       iconName: "reader-sharp",
       hasButton: true,
       hasDescription: false,
+      onPress: () => navigation.navigate(TASKNOTES),
     },
     {
       name: "Attachments",
       iconName: "attach-sharp",
       hasButton: true,
       hasDescription: false,
+      onPress: () => onOpen(),
     },
   ];
 
   const renderTaskSubOptions = ({ item }) => (
-    <Pressable android_ripple={{ color: "#9ca3af" }} style={styles.subTaskBtn}>
+    <Pressable
+      android_ripple={{ color: "#9ca3af" }}
+      style={styles.subTaskBtn}
+      onPress={item.onPress}
+    >
       <View
         w={"full"}
         h={"full"}
@@ -151,6 +183,30 @@ const AddToTasks = ({ navigation }) => {
     </Pressable>
   );
 
+  //date-time picker functions
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    console.log(currentDate);
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    DateTimePickerAndroid.open({
+      value: date,
+      onChange,
+      mode: currentMode,
+      is24Hour: true,
+    });
+  };
+
+  const showDatepicker = () => {
+    showMode("date");
+  };
+
+  const showTimepicker = () => {
+    showMode("time");
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -160,7 +216,7 @@ const AddToTasks = ({ navigation }) => {
           bgColor={"primary.50"}
           endIcon={<Icon as={Ionicons} name="caret-down" size="sm" />}
           size={"xs"}
-          borderRadius={"20"}
+          height={"8"}
           width={"30%"}
           maxWidth={"50%"}
         >
@@ -172,25 +228,61 @@ const AddToTasks = ({ navigation }) => {
         alwaysBounceVertical
         renderItem={renderTaskSubOptions}
         ListHeaderComponent={() => (
-          <Input
-            placeholder="Enter task here"
-            numberOfLines={15}
-            variant={"filled"}
-            bgColor={"transparent"}
-            borderColor={"transparent"}
-            // autoFocus
-            isFullWidth
-            multiline
-            textAlignVertical="top"
-            _focus={{
-              borderColor: "transparent",
-            }}
-          />
+          <VStack space={2}>
+            <Input
+              placeholder="Enter task here"
+              numberOfLines={15}
+              variant={"filled"}
+              bgColor={"transparent"}
+              borderColor={"transparent"}
+              // autoFocus
+              isFullWidth
+              multiline
+              textAlignVertical="top"
+              _focus={{
+                borderColor: "transparent",
+              }}
+            />
+            {subTasks && (
+              <View my={"4"}>
+                {subTasks.map((subTask) => (
+                  <Pressable w={"100%"} px={"2"} py={"2"} key={subTask}>
+                    <HStack alignItems="center" space={3}>
+                      <Checkbox
+                        colorScheme="coolGray"
+                        aria-label="completed?"
+                        rounded={"full"}
+                        size={"sm"}
+                      />
+                      <Text
+                        color="coolGray.500"
+                        _dark={{
+                          color: "warmGray.50",
+                        }}
+                        bold
+                      >
+                        {subTask}
+                      </Text>
+                    </HStack>
+                  </Pressable>
+                ))}
+              </View>
+            )}
+          </VStack>
         )}
         ItemSeparatorComponent={<Divider bgColor={"coolGray.100"} />}
         ListFooterComponent={<View paddingTop={"10"} />}
-        // overScrollMode={"never"}
-        // showsVerticalScrollIndicator={false}
+        overScrollMode={"never"}
+        showsVerticalScrollIndicator={false}
+      />
+      <AddSubTaskModal
+        showAddSubTaskModal={showAddSubTaskModal}
+        setShowAddSubTaskModal={setShowAddSubTaskModal}
+      />
+      <AttachmentsActionSheet
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
       />
     </View>
   );

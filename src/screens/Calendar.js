@@ -1,34 +1,21 @@
 import { Platform, StatusBar, StyleSheet } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Calendar as Calender } from "react-native-calendars";
 import { Heading, View } from "native-base";
 import { colors } from "../theme/theme";
 import moment from "moment";
 import FabComp from "../components/FabComp";
 
-const Calendar = ({ navigation }) => {
+const Calendar = () => {
   const [markedDate, setMarkedDate] = useState({
     [moment().format("yyyy-MM-DD")]: { selected: true, marked: true },
   });
-  // useEffect(() => {
-  //   navigation.setOptions({
-  //     headerTitleStyle: {
-  //       fontSize: 16,
-  //       fontFamily: "colfax-bold",
-  //     },
-
-  //     // headerTransparent: true,
-  //     headerShown: false,
-  //   });
-  // }, [navigation]);
 
   return (
     <View style={styles.container}>
       <View style={styles.calendarContainer}>
         <Calender
           onDayPress={(day) => {
-            // console.log("selected day", day);
-
             let dateString = day.dateString;
             let markedFormat = {
               [dateString]: {
@@ -36,45 +23,18 @@ const Calendar = ({ navigation }) => {
                 marked: true,
               },
             };
-            // console.log(markedFormat);
             setMarkedDate(markedFormat);
           }}
           onDayLongPress={(day) => {
             console.log("selected day", day);
           }}
           markedDates={markedDate}
-          monthFormat={"MMMM yyyy"}
+          monthFormat={"MMMM YYYY"}
           hideExtraDays={false}
           onPressArrowLeft={(subtractMonth) => subtractMonth()}
           onPressArrowRight={(addMonth) => addMonth()}
           enableSwipeMonths={true}
-          theme={{
-            // todayBackgroundColor: `${colors.primaryColor}`,
-            backgroundColor: "#eef2ff",
-            calendarBackground: "#eef2ff",
-            textSectionTitleColor: "#b6c1cd",
-            textSectionTitleDisabledColor: "#d1d5db",
-            selectedDayBackgroundColor: `${colors.primaryColor}`,
-            selectedDayTextColor: "#ffffff",
-            todayTextColor: `${colors.primaryColor}`,
-            dayTextColor: "#2d4150",
-            textDisabledColor: "#d1d5db",
-            dotColor: "#00adf5",
-            selectedDotColor: "#ffffff",
-            arrowColor: "#6b7280",
-            disabledArrowColor: "#d1d5db",
-            monthTextColor: "#6b7280",
-            indicatorColor: `${colors.primaryColor}`,
-            textDayFontFamily: "colfax-regular",
-            textMonthFontFamily: "colfax-bold",
-            textDayHeaderFontFamily: "colfax-bold",
-            textDayFontWeight: "300",
-            textMonthFontWeight: "bolder",
-            textDayHeaderFontWeight: "bolder",
-            textDayFontSize: 12,
-            textMonthFontSize: 12,
-            textDayHeaderFontSize: 12,
-          }}
+          theme={calendarTheme}
         />
       </View>
       <View style={styles.bodyContainer}>
@@ -108,7 +68,7 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   calendarContainer: {
     paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
-    backgroundColor: "#eef2ff",
+    backgroundColor: `${colors.itemColor}`,
   },
   bodyContainer: {
     flex: 1,
@@ -116,3 +76,31 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+const calendarTheme = {
+  // todayBackgroundColor: `${colors.primaryColor}`,
+  backgroundColor: `${colors.itemColor}`,
+  calendarBackground: `${colors.itemColor}`,
+  textSectionTitleColor: "#b6c1cd",
+  textSectionTitleDisabledColor: "#d1d5db",
+  selectedDayBackgroundColor: `${colors.primaryColor}`,
+  selectedDayTextColor: "#ffffff",
+  todayTextColor: `${colors.primaryColor}`,
+  dayTextColor: "#2d4150",
+  textDisabledColor: "#d1d5db",
+  dotColor: "#00adf5",
+  selectedDotColor: "#ffffff",
+  arrowColor: "#6b7280",
+  disabledArrowColor: "#d1d5db",
+  monthTextColor: "#6b7280",
+  indicatorColor: `${colors.primaryColor}`,
+  textDayFontFamily: "colfax-regular",
+  textMonthFontFamily: "colfax-bold",
+  textDayHeaderFontFamily: "colfax-bold",
+  textDayFontWeight: "300",
+  textMonthFontWeight: "bolder",
+  textDayHeaderFontWeight: "bolder",
+  textDayFontSize: 12,
+  textMonthFontSize: 12,
+  textDayHeaderFontSize: 12,
+};

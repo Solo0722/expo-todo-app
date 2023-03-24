@@ -2,8 +2,6 @@ import { StyleSheet } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Fab, Icon } from "native-base";
-import { useNavigation } from "@react-navigation/native";
-import { ADDTOTASKS } from "../constants/routeNames";
 
 const FabComp = ({ styles = {}, onPress }) => {
   return (

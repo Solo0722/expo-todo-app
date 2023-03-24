@@ -5,29 +5,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { SIGNUP } from "../constants/routeNames";
 
 const Welcome = ({ navigation }) => {
-  const benefits = [
-    {
-      title: "Create Tasks Quickly and Easily",
-      description: "Input tasks,  subtasks and repetitive tasks.",
-      iconName: "create",
-    },
-    {
-      title: "Task Reminders",
-      description: "Set reminders, and never miss important things.",
-      iconName: "alarm",
-    },
-    {
-      title: "Personalized widgets",
-      description: "Create widgets and view your tasks more easily.",
-      iconName: "grid",
-    },
-    {
-      title: "Custom Themes",
-      description: "Choose the theme you like and start your wonderful day.",
-      iconName: "shirt",
-    },
-  ];
-
   return (
     <View style={styles.container} bgColor={"primary.200"}>
       <Heading fontSize={"2xl"} fontWeight={"extrabold"}>
@@ -59,7 +36,6 @@ const Welcome = ({ navigation }) => {
         w={"full"}
         rounded={"full"}
         marginTop={50}
-        // endIcon={<Icon as={Ionicons} name="chevron-forward" size="sm" />}
         onPress={() => navigation.navigate(SIGNUP)}
       >
         Continue
@@ -85,11 +61,32 @@ const styles = StyleSheet.create({
     paddingVertical: 60,
     paddingHorizontal: "10%",
     display: "flex",
-    // alignItems: "center",
     justifyContent: "center",
   },
   benefitContainer: {
-    // width: "100%",
     paddingVertical: 30,
   },
 });
+
+const benefits = [
+  {
+    title: "Create Tasks Quickly and Easily",
+    description: "Input tasks,  subtasks and repetitive tasks.",
+    iconName: "create",
+  },
+  {
+    title: "Task Reminders",
+    description: "Set reminders, and never miss important things.",
+    iconName: "alarm",
+  },
+  {
+    title: "Personalized widgets",
+    description: "Create widgets and view your tasks more easily.",
+    iconName: "grid",
+  },
+  {
+    title: "Custom Themes",
+    description: "Choose the theme you like and start your wonderful day.",
+    iconName: "shirt",
+  },
+];

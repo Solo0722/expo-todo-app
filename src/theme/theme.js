@@ -2,9 +2,11 @@ import { extendTheme } from "native-base";
 
 export const colors = {
   primaryColor: "#818cf8",
-  secondaryColor: "#fafbff",
+  // secondaryColor: "#fafbff",
+  secondaryColor: "#f9fbff",
   white: "#fff",
   black: "#000",
+  itemColor: "#f1f5f9",
 };
 
 export const nativebaseTheme = extendTheme({

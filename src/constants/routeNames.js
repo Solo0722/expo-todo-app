@@ -21,3 +21,4 @@ export const PROFILE = "Profile";
 export const DONATE = "Donate";
 export const FEEDBACK = "Feedback";
 export const FAQS = "FAQs";
+export const TASKNOTES = "TaskNotes";

@@ -1,7 +1,6 @@
 import { StyleSheet } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import {
-  ADDTOTASKS,
   CALENDARNAVIGATOR,
   CLASSESNAVIGATOR,
   TASKSNAVIGATOR,
@@ -106,14 +105,14 @@ export default TabBar;
 
 const styles = StyleSheet.create({
   box: {
-    // display: "flex",
+    display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     height: 60,
-    elevation: 5,
+    elevation: 20,
     shadowColor: "#000",
-    backgroundColor: colors.secondaryColor,
+    backgroundColor: colors.white,
   },
   tabBarItem: {
     flex: 1,

@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import {
   CardStyleInterpolators,
@@ -17,13 +16,14 @@ const CalendarNavigator = () => {
       screenOptions={{
         cardStyle: { backgroundColor: `${colors.secondaryColor}` },
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        headerShown: false,
       }}
     >
       <CalendarStack.Screen
         name={CALENDAR}
         component={Calendar}
         options={{
-          headerTitle: "Calendar",
+          headerTitle: "",
           headerTitleStyle: {
             fontFamily: "colfax-bold",
           },
