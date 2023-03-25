@@ -1,29 +1,34 @@
 import { StyleSheet } from "react-native";
 import React from "react";
-import { FlatList, Heading, HStack, Pressable, View } from "native-base";
-import { Ionicons } from "@expo/vector-icons";
+import { FlatList, Heading, HStack, Icon, Pressable, View } from "native-base";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Donate = () => {
   const donations = [
     {
       name: "A Lollipop",
-      iconName: "",
+      iconName: "candy",
+      color: "rose.500",
     },
     {
       name: "A Chocolate Bar",
-      iconName: "",
+      iconName: "candy",
+      color: "blue.500",
     },
     {
       name: "A Cup of Coffee",
-      iconName: "",
+      iconName: "coffee",
+      color: "amber.900",
     },
     {
       name: "A Burger Meal",
-      iconName: "",
+      iconName: "hamburger",
+      color: "orange.500",
     },
     {
       name: "A Big Dinner",
-      iconName: "",
+      iconName: "food",
+      color: "green.400",
     },
   ];
 
@@ -35,37 +40,36 @@ const Donate = () => {
       shadow={"2"}
       w={"full"}
       borderRadius={"sm"}
-      p={"2"}
+      px={"2"}
+      py={"6"}
     >
-      <HStack space={"3"}>
+      <HStack space={"4"} display={"flex"} alignItems={"flex-end"}>
         <Icon
-          as={Ionicons}
+          as={MaterialCommunityIcons}
           name={item.iconName}
-          size={"sm"}
-          color={"primary.400"}
+          size={"lg"}
+          color={item.color}
         />
-        <Heading fontSize={"xs"} fontFamily={"colfax-regular"}>
-          {item.name}
-        </Heading>
+        <Heading fontSize={"md"}>{item.name}</Heading>
       </HStack>
     </Pressable>
   );
 
   return (
     <View style={styles.container} bgColor={"primary.200"}>
-      <Heading fontSize={"sm"} fontFamily={"colfax-bold"} mb={"2"}>
+      <Heading fontSize={"lg"} fontFamily={"colfax-bold"} mb={"4"}>
         Support To-do List Developer
       </Heading>
-      <Heading fontSize={"xs"} fontFamily={"colfax-regular"} mb={"4"}>
-        This is a donation page. You could treat us with a meal or a cup of
-        coffee here. We will be really grateful for your kind encouragement.
-        Anyway, we feel grateful to you whether you donate or not. Thank you for
+      <Heading fontSize={"sm"} fontFamily={"colfax-regular"} mb={"4"}>
+        This is a donation page. You could treat me with a meal or a cup of
+        coffee here. I will be really grateful for your kind encouragement.
+        Anyway, I feel grateful to you whether you donate or not. Thank you for
         using this app.
       </Heading>
       <FlatList
-        data={[donations]}
+        data={donations}
         renderItem={renderItem}
-        keyExtractor={({ item }) => item.name}
+        // keyExtractor={({ item }) => item.name}
       />
     </View>
   );

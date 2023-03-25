@@ -1,17 +1,25 @@
 import { StyleSheet } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Button, Heading, HStack, Input, Modal } from "native-base";
 
-const AddSubTaskModal = ({ showAddSubTaskModal, setShowAddSubTaskModal }) => {
-  console.log("modal opened!");
+const AddSubTaskModal = ({
+  showAddSubTaskModal,
+  setShowAddSubTaskModal,
+  setSubTasks,
+  subTasks,
+}) => {
+  const [task, setTask] = useState("");
+
+  const handleAdd = () => {
+    setSubTasks([...subTasks, task]);
+  };
+
   return (
     <Modal
       isOpen={showAddSubTaskModal}
       onClose={() => setShowAddSubTaskModal(false)}
-      // size="lg"
     >
       <Modal.Content>
-        {/* <Modal.Header borderBottomWidth={0} >Add </Modal.Header> */}
         <Modal.Body>
           <Input
             variant={"filled"}
@@ -28,6 +36,7 @@ const AddSubTaskModal = ({ showAddSubTaskModal, setShowAddSubTaskModal }) => {
             colorScheme={"primary"}
             placeholder="Sub task here..."
             color={"black"}
+            onChangeText={(e) => setTask(e)}
           />
         </Modal.Body>
         <Modal.Footer borderTopWidth={0}>
@@ -43,6 +52,7 @@ const AddSubTaskModal = ({ showAddSubTaskModal, setShowAddSubTaskModal }) => {
             <Button
               variant="solid"
               onPress={() => {
+                handleAdd();
                 setShowAddSubTaskModal(false);
               }}
             >

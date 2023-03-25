@@ -58,7 +58,10 @@ const DrawerNavigator = () => {
       <Drawer.Screen
         name={DONATE}
         component={Donate}
-        options={{ ...defaultOptions }}
+        options={{
+          ...defaultOptions,
+          headerStyle: { backgroundColor: "#c7d2fe" },
+        }}
       />
     </Drawer.Navigator>
   );

@@ -24,6 +24,7 @@ import moment from "moment";
 import AddSubTaskModal from "../components/modals/AddSubTaskModal";
 import AttachmentsActionSheet from "../components/AttachmentsActionSheet";
 import { TASKNOTES } from "../constants/routeNames";
+import MenuComp from "../components/MenuComp";
 
 const AddToTasks = ({ navigation }) => {
   const [date, setDate] = useState(new Date());
@@ -48,31 +49,18 @@ const AddToTasks = ({ navigation }) => {
               />
             }
           />
-          <Menu
-            // w="190"
-            bgColor={`${colors.secondaryColor}`}
-            placement="bottom left"
-            mr={"5"}
-            safeAreaRight
-            trigger={(triggerProps) => {
-              return (
-                <IconButton
-                  accessibilityLabel="More options menu"
-                  {...triggerProps}
-                  variant={"ghost"}
-                  colorScheme={"coolGray"}
-                  rounded={"full"}
-                  icon={<Icon as={Ionicons} name="ellipsis-vertical-sharp" />}
-                />
-              );
-            }}
-          >
-            <Menu.Item>Mark as Done</Menu.Item>
-            <Menu.Item>Duplicate Task</Menu.Item>
-            <Menu.Item>Print</Menu.Item>
-            <Menu.Item>Share</Menu.Item>
-            <Menu.Item>Delete</Menu.Item>
-          </Menu>
+          <MenuComp
+            TriggerButton={() => (
+              <IconButton
+                accessibilityLabel="More options menu"
+                variant={"ghost"}
+                colorScheme={"coolGray"}
+                rounded={"full"}
+                icon={<Icon as={Ionicons} name="ellipsis-vertical-sharp" />}
+              />
+            )}
+            menuData={[{ name: "Mark as Done" }, { name: "Share" }]}
+          />
         </HStack>
       ),
       headerRightContainerStyle: {
@@ -210,18 +198,24 @@ const AddToTasks = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Button
-          variant="unstyled"
-          color={"coolGray.500"}
-          bgColor={"primary.50"}
-          endIcon={<Icon as={Ionicons} name="caret-down" size="sm" />}
-          size={"xs"}
-          height={"8"}
-          width={"30%"}
-          maxWidth={"50%"}
-        >
-          No category
-        </Button>
+        <MenuComp
+          TriggerButton={() => (
+            <Button
+              variant="unstyled"
+              color={"coolGray.500"}
+              bgColor={"primary.50"}
+              endIcon={<Icon as={Ionicons} name="caret-down" size="sm" />}
+              size={"xs"}
+              height={"7"}
+              width={"30%"}
+              maxWidth={"50%"}
+              accessibilityLabel="More options menu"
+            >
+              No category
+            </Button>
+          )}
+          menuData={[{ name: "Mark as Done" }, { name: "Share" }]}
+        />
       </View>
       <FlatList
         data={options}
@@ -278,6 +272,8 @@ const AddToTasks = ({ navigation }) => {
       <AddSubTaskModal
         showAddSubTaskModal={showAddSubTaskModal}
         setShowAddSubTaskModal={setShowAddSubTaskModal}
+        subTasks={subTasks}
+        setSubTasks={setSubTasks}
       />
       <AttachmentsActionSheet
         isOpen={isOpen}

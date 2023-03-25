@@ -23,36 +23,41 @@ import moment from "moment";
 import { ADDTOTASKS } from "../constants/routeNames";
 import { GlobalContext } from "../context/context";
 import { colors } from "../theme/theme";
-import { groupQuery } from "../helpers/sanity/sanityQueries";
+import {
+  categoriesQuery,
+  groupQuery,
+  tasksQuery,
+} from "../helpers/sanity/sanityQueries";
 import { client } from "../helpers/sanity/sanityClient";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const Tasks = ({ navigation }) => {
-  const { tasks, setTasks, loggedInUser } = useContext(GlobalContext);
+  const { tasks, setTasks, setTaskCategories, taskCategories, loggedInUser } =
+    useContext(GlobalContext);
   const toast = useToast();
   const [loading, setLoading] = useState(false);
 
-  // useMemo(() => {
-  //   const query = groupQuery("task", loggedInUser._id);
-  //   setLoading(true);
-  //   client
-  //     .fetch(query)
-  //     .then((result) => {
-  //       console.log("result: ", result);
-  //       setTasks(result);
-  //       setLoading(false);
-  //     })
-  //     .catch((err) => {
-  //       setLoading(false);
-  //       console.error(err);
-  //       toast.show({
-  //         description: "Error fetching tasks. Try again",
-  //         placement: "top",
-  //         colorScheme: "error",
-  //         bgColor: "error.500",
-  //       });
-  //     });
-  // }, []);
+  useMemo(() => {
+    const tasks_query = tasksQuery(loggedInUser._id);
+    setLoading(true);
+
+    client
+      .fetch(tasks_query)
+      .then((result) => {
+        setTasks(result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.error(err);
+        toast.show({
+          description: "Error fetching tasks. Try again",
+          placement: "top",
+          colorScheme: "error",
+          bgColor: "error.500",
+        });
+      });
+  }, []);
 
   useEffect(() => {
     navigation.setOptions({
@@ -105,6 +110,7 @@ const Tasks = ({ navigation }) => {
       w="full"
       bgColor={`${colors.itemColor}`}
       android_ripple={{ color: "#9ca3af" }}
+      // onPress={}
     >
       <Box pl="4" pr="5" py="2" height={"64px"}>
         <HStack alignItems="center" space={3}>
@@ -121,8 +127,9 @@ const Tasks = ({ navigation }) => {
                 color: "warmGray.50",
               }}
               bold
+              fontWeight={"bold"}
             >
-              {item.fullName}
+              {item.title}
             </Text>
             <Text
               color="coolGray.600"
@@ -131,20 +138,16 @@ const Tasks = ({ navigation }) => {
               }}
               fontSize={"xs"}
             >
-              {moment().format("Do MMMM YYYY")}
+              {moment(item.dueDateAndTime).format("D-MM-YYYY")}
             </Text>
           </VStack>
           <Spacer />
-          <Text
-            fontSize="xs"
-            color="coolGray.800"
-            _dark={{
-              color: "warmGray.50",
-            }}
-            alignSelf="flex-start"
-          >
-            {item.timeStamp}
-          </Text>
+          <Icon
+            as={Ionicons}
+            name={"flag"}
+            size={"sm"}
+            color={item.category.color}
+          />
         </HStack>
       </Box>
     </Pressable>
@@ -243,7 +246,7 @@ const Tasks = ({ navigation }) => {
             data={tasks || []}
             renderItem={renderItem}
             renderHiddenItem={renderHiddenItem}
-            keyExtractor={({ item }) => item._id}
+            // keyExtractor={({ item }) => item._id}
             rightOpenValue={-200}
             previewRowKey={"0"}
             previewOpenValue={-200}

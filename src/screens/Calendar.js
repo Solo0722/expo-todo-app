@@ -29,7 +29,7 @@ const Calendar = () => {
             console.log("selected day", day);
           }}
           markedDates={markedDate}
-          monthFormat={"MMMM YYYY"}
+          monthFormat={"MMMM yyyy"}
           hideExtraDays={false}
           onPressArrowLeft={(subtractMonth) => subtractMonth()}
           onPressArrowRight={(addMonth) => addMonth()}

@@ -44,7 +44,6 @@ const TabBar = ({ state, descriptors, navigation }) => {
     {
       key: state.routes[3].key,
       routeName: CLASSESNAVIGATOR,
-
       name: "Classes",
       onPress: () => navigate(CLASSESNAVIGATOR),
       iconName: "school-sharp",

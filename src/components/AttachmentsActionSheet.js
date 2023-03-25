@@ -11,31 +11,44 @@ import {
 } from "native-base";
 import {
   audioIcon,
+  cameraIcon,
   fileIcon,
   photoIcon,
   recordAudioIcon,
 } from "../constants/general";
+import { imagePicker } from "../helpers/functions/imagePicker";
+import { startRecording } from "../helpers/functions/audioRecorder";
+import { useState } from "react";
+import { useCamera } from "../helpers/functions/useCamera";
+import { filePicker } from "../helpers/functions/filePicker";
 
 const AttachmentsActionSheet = ({ isOpen, onOpen, onClose }) => {
+  const [recording, setRecording] = useState();
+
   const data = [
-    { name: "Photo", image: photoIcon, color: "blue.200", onPress: () => null },
+    {
+      name: "Camera",
+      image: cameraIcon,
+      color: "red.200",
+      onPress: () => useCamera(),
+    },
+    {
+      name: "Photo",
+      image: photoIcon,
+      color: "blue.200",
+      onPress: () => filePicker("image"),
+    },
     {
       name: "Audio",
       image: audioIcon,
       color: "success.200",
-      onPress: () => null,
-    },
-    {
-      name: "Record Audio",
-      image: recordAudioIcon,
-      color: "red.200",
-      onPress: () => null,
+      onPress: () => filePicker("audio"),
     },
     {
       name: "Files",
       image: fileIcon,
       color: "yellow.200",
-      onPress: () => null,
+      onPress: () => filePicker("*"),
     },
   ];
 
@@ -52,6 +65,7 @@ const AttachmentsActionSheet = ({ isOpen, onOpen, onClose }) => {
           alignItems={"center"}
           justifyContent={"center"}
           borderRadius={"10"}
+          onPress={item.onPress}
         >
           <Image source={{ uri: item.image }} w={"6"} h={"6"} alt={item.name} />
         </Pressable>
