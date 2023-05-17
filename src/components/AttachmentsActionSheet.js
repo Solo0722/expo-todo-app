@@ -14,41 +14,51 @@ import {
   cameraIcon,
   fileIcon,
   photoIcon,
-  recordAudioIcon,
 } from "../constants/general";
-import { imagePicker } from "../helpers/functions/imagePicker";
-import { startRecording } from "../helpers/functions/audioRecorder";
-import { useState } from "react";
 import { useCamera } from "../helpers/functions/useCamera";
 import { filePicker } from "../helpers/functions/filePicker";
 
-const AttachmentsActionSheet = ({ isOpen, onOpen, onClose }) => {
-  const [recording, setRecording] = useState();
-
+const AttachmentsActionSheet = ({
+  isOpen,
+  onOpen,
+  onClose,
+  attachments,
+  setAttachments,
+}) => {
   const data = [
     {
       name: "Camera",
       image: cameraIcon,
       color: "red.200",
-      onPress: () => useCamera(),
+      onPress: () =>
+        useCamera().then((result) => setAttachments([...attachments, result])),
     },
     {
       name: "Photo",
       image: photoIcon,
       color: "blue.200",
-      onPress: () => filePicker("image"),
+      onPress: async () =>
+        await filePicker("image").then((result) =>
+          setAttachments([...attachments, result])
+        ),
     },
     {
       name: "Audio",
       image: audioIcon,
       color: "success.200",
-      onPress: () => filePicker("audio"),
+      onPress: async () =>
+        await filePicker("audio").then((result) =>
+          setAttachments([...attachments, result])
+        ),
     },
     {
       name: "Files",
       image: fileIcon,
       color: "yellow.200",
-      onPress: () => filePicker("*"),
+      onPress: async () =>
+        await filePicker("*").then((result) =>
+          setAttachments([...attachments, result])
+        ),
     },
   ];
 
@@ -65,7 +75,10 @@ const AttachmentsActionSheet = ({ isOpen, onOpen, onClose }) => {
           alignItems={"center"}
           justifyContent={"center"}
           borderRadius={"10"}
-          onPress={item.onPress}
+          onPress={() => {
+            item.onPress();
+            onClose();
+          }}
         >
           <Image source={{ uri: item.image }} w={"6"} h={"6"} alt={item.name} />
         </Pressable>

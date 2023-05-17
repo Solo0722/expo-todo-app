@@ -5,6 +5,7 @@ import {
   PROFILE,
   SETTINGS,
   TABNAVIGATOR,
+  WELCOME,
 } from "../constants/routeNames";
 import TabNavigator from "./TabNavigator";
 import Drawerbar from "../components/Drawerbar";
@@ -14,6 +15,9 @@ import Settings from "../screens/Settings";
 import Donate from "../screens/Donate";
 import BackButton from "../components/BackButton";
 import { colors } from "../theme/theme";
+import Welcome from "../screens/Welcome";
+import { useContext } from "react";
+import { GlobalContext } from "../context/context";
 enableScreens();
 
 const DrawerNavigator = () => {
@@ -37,7 +41,7 @@ const DrawerNavigator = () => {
           elevation: 0,
         },
         headerTitleStyle: {
-          fontFamily: "colfax-bold",
+          fontFamily: "bellota-bold",
           fontSize: 18,
         },
       }}

@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import React from "react";
 import { Box, Button, Heading, HStack, Icon, View, VStack } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
-import { SIGNUP } from "../constants/routeNames";
+import { SIGNUP, TABNAVIGATOR } from "../constants/routeNames";
 
 const Welcome = ({ navigation }) => {
   return (

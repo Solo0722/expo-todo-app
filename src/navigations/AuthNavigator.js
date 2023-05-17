@@ -9,6 +9,9 @@ import Signin from "../screens/Signin";
 import Signup from "../screens/Signup";
 import { enableScreens } from "react-native-screens";
 import { colors } from "../theme/theme";
+import { useContext } from "react";
+import { GlobalContext } from "../context/context";
+import { useEffect } from "react";
 enableScreens();
 
 const AuthNavigator = () => {

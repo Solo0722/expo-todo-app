@@ -15,63 +15,44 @@ import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../theme/theme";
 
 const TabBar = ({ state, descriptors, navigation }) => {
-  const { openDrawer, navigate } = useNavigation();
-  const route = useRoute();
-  const [hideTabBar, setHideTabBar] = useState(false);
-
-  const routes = [
-    {
-      key: state.routes[0].key,
-      routeName: "",
-      name: "Mine",
-      onPress: () => openDrawer(),
-      iconName: "menu-sharp",
-    },
-    {
-      key: state.routes[1].key,
-      routeName: TASKSNAVIGATOR,
-      name: "Tasks",
-      onPress: () => navigate(TASKSNAVIGATOR),
-      iconName: "reader-sharp",
-    },
-    {
-      key: state.routes[2].key,
-      routeName: CALENDARNAVIGATOR,
-      name: "Calendar",
-      onPress: () => navigate(CALENDARNAVIGATOR),
-      iconName: "calendar-sharp",
-    },
-    {
-      key: state.routes[3].key,
-      routeName: CLASSESNAVIGATOR,
-      name: "Classes",
-      onPress: () => navigate(CLASSESNAVIGATOR),
-      iconName: "school-sharp",
-    },
-  ];
-
-  let focusedRouteName = getFocusedRouteNameFromRoute(route);
-
-  useLayoutEffect(() => {
-    routes.forEach((route) => {
-      descriptors[route.key].navigation.setOptions({});
-    });
-  }, []);
-
   return (
-    <Box
-      w="full"
-      style={[styles.box, { display: `${hideTabBar ? "none" : "flex"}` }]}
-    >
-      {routes.map((route, index) => {
+    <Box w="full" style={[styles.box]}>
+      {state.routes.map((route, index) => {
+        const { options } = descriptors[route.key];
+        const label = options.tabBarLabel || route.name;
+        const iconName = options.tabBarIcon || "home-sharp";
         const isFocused = state.index === index;
+
+        const onPress = () => {
+          const event = navigation.emit({
+            type: "tabPress",
+            target: route.key,
+            canPreventDefault: true,
+          });
+
+          if (!isFocused && !event.defaultPrevented) {
+            navigation.navigate(route.name);
+          }
+        };
+
+        const onLongPress = () => {
+          navigation.emit({
+            type: "tabLongPress",
+            target: route.key,
+          });
+        };
 
         return (
           <Pressable
-            key={route.name}
+            key={`${index}--${route.key}`}
             style={styles.tabBarItem}
-            android_ripple={{ color: "#9ca3af" }}
-            onPress={route.onPress}
+            android_ripple={{ color: "#9ca3af", borderless: true }}
+            accessibilityRole="button"
+            accessibilityState={isFocused ? { selected: true } : {}}
+            accessibilityLabel={options.tabBarAccessibilityLabel}
+            testID={options.tabBarTestID}
+            onPress={onPress}
+            onLongPress={onLongPress}
           >
             <VStack
               space={2}
@@ -81,17 +62,17 @@ const TabBar = ({ state, descriptors, navigation }) => {
             >
               <Icon
                 as={Ionicons}
-                name={route.iconName}
+                name={iconName}
                 size={"md"}
                 color={isFocused ? "primary.400" : "coolGray.400"}
               />
-              <Heading
+              {/* <Heading
                 fontSize={"xs"}
                 fontWeight={"600"}
                 color={isFocused ? "primary.500" : "coolGray.400"}
               >
-                {route.name}
-              </Heading>
+                {label}
+              </Heading> */}
             </VStack>
           </Pressable>
         );
@@ -108,10 +89,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    height: 60,
+    height: 50,
     elevation: 20,
     shadowColor: "#000",
-    backgroundColor: colors.white,
+    backgroundColor: colors.secondaryColor,
   },
   tabBarItem: {
     flex: 1,

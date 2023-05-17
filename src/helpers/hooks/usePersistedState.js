@@ -1,10 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect } from "react";
 import { useMemo, useState } from "react";
 
 export function usePersistedState(key, initialState) {
   const [state, setState] = useState(() => {});
 
-  useMemo(() => {
+  useEffect(() => {
     async function getAndSetInitialState() {
       const persistedState = await AsyncStorage.getItem(key);
       if (persistedState) {

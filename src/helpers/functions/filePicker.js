@@ -7,7 +7,12 @@ export const filePicker = async (type) => {
     type: `${type}/*`,
   });
 
-  if (result.type == "success") {
+  if (result.type === "cancel") {
+    console.log("Process canceled");
+  }
+
+  if (result.type === "success") {
+    console.log(result);
     return result;
   }
 };

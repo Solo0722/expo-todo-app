@@ -10,21 +10,22 @@ import { enableScreens } from "react-native-screens";
 import GlobalProvider from "./src/context/context";
 import MainNavigator from "./src/navigations/MainNavigator";
 import "react-native-url-polyfill/auto";
+import { StatusBar } from "expo-status-bar";
 enableScreens();
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    "colfax-thin": require("./src/assets/fonts/Colfax-Thin.otf"),
-    "colfax-light": require("./src/assets/fonts/Colfax-Light.otf"),
-    "colfax-regular": require("./src/assets/fonts/Colfax-Regular.otf"),
-    "colfax-bold": require("./src/assets/fonts/Colfax-Bold.otf"),
+    "bellota-thin": require("./src/assets/fonts/Bellota-Light.ttf"),
+    "bellota-light": require("./src/assets/fonts/Bellota-Light.ttf"),
+    "bellota-regular": require("./src/assets/fonts/Bellota-Regular.ttf"),
+    "bellota-bold": require("./src/assets/fonts/Bellota-Bold.ttf"),
   });
 
   const customTextProps = {
     style: {
-      fontFamily: "colfax-light",
+      fontFamily: "bellota-light",
     },
   };
 
@@ -46,6 +47,7 @@ export default function App() {
     <NativeBaseProvider theme={nativebaseTheme}>
       <NavigationContainer>
         <GlobalProvider>
+          <StatusBar backgroundColor="#f9fdff" />
           <MainNavigator />
         </GlobalProvider>
       </NavigationContainer>

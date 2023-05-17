@@ -2,22 +2,21 @@ import { StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { Button, Heading, HStack, Input, Modal } from "native-base";
 
-const AddSubTaskModal = ({
-  showAddSubTaskModal,
-  setShowAddSubTaskModal,
-  setSubTasks,
-  subTasks,
+const AddTaskNotesModal = ({
+  showAddNotesModal,
+  setShowAddNotesModal,
+  notes,
+  setNotes,
 }) => {
-  const [task, setTask] = useState("");
-
+  const [nt, setNt] = useState("");
   const handleAdd = () => {
-    setSubTasks([...subTasks, task]);
+    setNotes(nt);
   };
 
   return (
     <Modal
-      isOpen={showAddSubTaskModal}
-      onClose={() => setShowAddSubTaskModal(false)}
+      isOpen={showAddNotesModal}
+      onClose={() => setShowAddNotesModal(false)}
     >
       <Modal.Content>
         <Modal.Body>
@@ -25,6 +24,10 @@ const AddSubTaskModal = ({
             variant={"filled"}
             cursorColor={"black"}
             bgColor={"coolGray.100"}
+            numberOfLines={20}
+            isFullWidth
+            multiline
+            textAlignVertical="top"
             autoFocus
             _focus={{
               bgColor: "coolGray.200",
@@ -35,9 +38,10 @@ const AddSubTaskModal = ({
               borderColor: "none",
             }}
             colorScheme={"primary"}
-            placeholder="Sub task here..."
+            placeholder="Notes here..."
             color={"black"}
-            onChangeText={(e) => setTask(e)}
+            value={nt}
+            onChangeText={(e) => setNt(e)}
           />
         </Modal.Body>
         <Modal.Footer borderTopWidth={0}>
@@ -45,7 +49,7 @@ const AddSubTaskModal = ({
             <Button
               variant="subtle"
               onPress={() => {
-                setShowAddSubTaskModal(false);
+                setShowAddNotesModal(false);
               }}
             >
               CANCEL
@@ -54,7 +58,7 @@ const AddSubTaskModal = ({
               variant="solid"
               onPress={() => {
                 handleAdd();
-                setShowAddSubTaskModal(false);
+                setShowAddNotesModal(false);
               }}
             >
               ADD
@@ -66,6 +70,6 @@ const AddSubTaskModal = ({
   );
 };
 
-export default AddSubTaskModal;
+export default AddTaskNotesModal;
 
 const styles = StyleSheet.create({});

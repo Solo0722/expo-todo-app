@@ -9,9 +9,10 @@ export const MINENAVIGATOR = "Mine Navigator";
 
 //screens
 export const TASKS = "Tasks";
+export const TASKTODOS = "Task Todos";
 export const CLASSES = "Classes";
 export const CALENDAR = "Calendar";
-export const ADDTOTASKS = "Add To Tasks";
+export const TASK = "Task";
 export const ADDTOCLASSES = "Add To Classes";
 export const WELCOME = "Welcome";
 export const SIGNIN = "Sign in";

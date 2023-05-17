@@ -1,9 +1,8 @@
 import { extendTheme } from "native-base";
 
 export const colors = {
-  primaryColor: "#818cf8",
-  // secondaryColor: "#fafbff",
-  secondaryColor: "#f9fbff",
+  primaryColor: "#9088d4",
+  secondaryColor: "#f9fdff",
   white: "#fff",
   black: "#000",
   itemColor: "#f1f5f9",
@@ -12,61 +11,61 @@ export const colors = {
 export const nativebaseTheme = extendTheme({
   colors: {
     primary: {
-      50: "#eef2ff",
-      100: "#e0e7ff",
-      200: "#c7d2fe",
-      300: "#a5b4fc",
-      400: "#818cf8",
-      500: "#6366f1",
-      600: "#4f46e5",
-      700: "#4338ca",
-      800: "#3730a3",
-      900: "#312e81",
+      50: "#fcfcfe",
+      100: "#dfdcf6",
+      200: "#c3bfeb",
+      300: "#aaa4de",
+      400: "#9088d4",
+      500: "#837bc8",
+      600: "#7871bb",
+      700: "#6f68ac",
+      800: "#67619b",
+      900: "#635f86",
     },
   },
   fontConfig: {
-    Colfax: {
+    Bellota: {
       100: {
-        normal: "colfax-thin",
-        italic: "colfax-thin",
+        normal: "bellota-thin",
+        italic: "bellota-thin",
       },
       200: {
-        normal: "colfax-thin",
-        italic: "colfax-thin",
+        normal: "bellota-thin",
+        italic: "bellota-thin",
       },
       300: {
-        normal: "colfax-thin",
-        italic: "colfax-thin",
+        normal: "bellota-thin",
+        italic: "bellota-thin",
       },
       400: {
-        normal: "colfax-light",
-        italic: "colfax-light",
+        normal: "bellota-light",
+        italic: "bellota-light",
       },
       500: {
-        normal: "colfax-light",
-        italic: "colfax-light",
+        normal: "bellota-light",
+        italic: "bellota-light",
       },
       600: {
-        normal: "colfax-regular",
-        italic: "colfax-regular",
+        normal: "bellota-regular",
+        italic: "bellota-regular",
       },
       700: {
-        normal: "colfax-regular",
-        italic: "colfax-regular",
+        normal: "bellota-regular",
+        italic: "bellota-regular",
       },
       800: {
-        normal: "colfax-bold",
-        italic: "colfax-bold",
+        normal: "bellota-bold",
+        italic: "bellota-bold",
       },
       900: {
-        normal: "colfax-bold",
-        italic: "colfax-bold",
+        normal: "bellota-bold",
+        italic: "bellota-bold",
       },
     },
   },
   fonts: {
-    heading: "Colfax",
-    body: "Colfax",
-    mono: "Colfax",
+    heading: "Bellota",
+    body: "Bellota",
+    mono: "Bellota",
   },
 });

@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import { GlobalContext } from "../context/context";
-import AuthNavigator from "./AuthNavigator";
-import DrawerNavigator from "./DrawerNavigator";
+import MainStackNavigator from "./MainStackNavigator";
 
 const MainNavigator = () => {
-  const { loggedInUser } = useContext(GlobalContext);
-
-  return <>{loggedInUser ? <DrawerNavigator /> : <AuthNavigator />}</>;
+  return (
+    <>
+      <MainStackNavigator />
+    </>
+  );
 };
 
 export default MainNavigator;

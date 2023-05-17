@@ -57,10 +57,10 @@ const Donate = () => {
 
   return (
     <View style={styles.container} bgColor={"primary.200"}>
-      <Heading fontSize={"lg"} fontFamily={"colfax-bold"} mb={"4"}>
+      <Heading fontSize={"lg"} fontFamily={"bellota-bold"} mb={"4"}>
         Support To-do List Developer
       </Heading>
-      <Heading fontSize={"sm"} fontFamily={"colfax-regular"} mb={"4"}>
+      <Heading fontSize={"sm"} fontFamily={"bellota-regular"} mb={"4"}>
         This is a donation page. You could treat me with a meal or a cup of
         coffee here. I will be really grateful for your kind encouragement.
         Anyway, I feel grateful to you whether you donate or not. Thank you for

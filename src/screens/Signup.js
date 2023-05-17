@@ -24,7 +24,7 @@ import SvgImage from "../assets/images/Audiobook.svg";
 
 const Signup = ({ navigation }) => {
   const toast = useToast();
-  const { setLoggedInUser } = useContext(GlobalContext);
+  const {} = useContext(GlobalContext);
   const [loading, setLoading] = useState(false);
 
   const [signupFormData, setSignupFormData] = useState({
@@ -102,7 +102,7 @@ const Signup = ({ navigation }) => {
         .createIfNotExists(doc)
         .then((result) => {
           setLoading(false);
-          setLoggedInUser(result);
+          // setLoggedInUser(result);
         })
         .catch((err) => {
           console.log(err);

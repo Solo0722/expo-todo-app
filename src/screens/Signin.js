@@ -21,7 +21,7 @@ import { GlobalContext } from "../context/context";
 
 const Signin = ({ navigation }) => {
   const toast = useToast();
-  const { setLoggedInUser } = useContext(GlobalContext);
+  const {} = useContext(GlobalContext);
   const [loginFormData, setLoginFormData] = useState({
     username: "",
     password: "",
@@ -68,7 +68,7 @@ const Signin = ({ navigation }) => {
         .fetch(q)
         .then((result) => {
           setLoading(false);
-          setLoggedInUser(result[0]);
+          // setLoggedInUser(result[0]);
         })
         .catch((err) => {
           console.log(err);

@@ -69,7 +69,7 @@ const Settings = () => {
         />
         <Heading
           fontSize={"md"}
-          fontFamily="colfax-regular"
+          fontFamily="bellota-regular"
           fontWeight={"600"}
           color={"black"}
         >

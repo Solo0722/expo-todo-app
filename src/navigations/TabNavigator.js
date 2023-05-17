@@ -1,18 +1,47 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import {
-  CALENDARNAVIGATOR,
-  CLASSESNAVIGATOR,
-  MINENAVIGATOR,
+  CALENDAR,
+  CLASSES,
+  PROFILE,
+  TASKS,
   TASKSNAVIGATOR,
 } from "../constants/routeNames";
-import CalendarNavigator from "./CalendarNavigator";
-import ClassesNavigator from "./ClassesNavigator";
-import MineNavigator from "./MineNavigator";
-import TasksNavigator from "./TasksNavigator";
 import TabBar from "../components/TabBar";
+import Tasks from "../screens/Tasks";
+import Classes from "../screens/Classes";
+import Calendar from "../screens/Calendar";
+import Profile from "../screens/Profile";
+import { colors } from "../theme/theme";
 
-const TabNavigator = ({ navigation, route }) => {
+const TabNavigator = () => {
+  const tabs = [
+    {
+      name: TASKS,
+      label: "Tasks",
+      component: Tasks,
+      iconName: "reader-sharp",
+    },
+    {
+      name: CLASSES,
+      label: "Classes",
+      component: Classes,
+      iconName: "school-sharp",
+    },
+    {
+      name: CALENDAR,
+      label: "Calendar",
+      component: Calendar,
+      iconName: "calendar-sharp",
+    },
+    {
+      name: PROFILE,
+      label: "Profile",
+      component: Profile,
+      iconName: "person-sharp",
+    },
+  ];
+
   const Tab = createBottomTabNavigator();
 
   return (
@@ -21,25 +50,32 @@ const TabNavigator = ({ navigation, route }) => {
         return <TabBar {...props} />;
       }}
       initialRouteName={TASKSNAVIGATOR}
+      sceneContainerStyle={{
+        backgroundColor: `${colors.secondaryColor}`,
+      }}
       screenOptions={{
-        headerShown: false,
-        tabBarStyle: {
-          height: 60,
-          paddingBottom: 10,
-          elevation: 5,
-          backgroundColor: "#fff",
-          display: "none",
-        },
         tabBarHideOnKeyboard: true,
-        tabBarLabelStyle: {
-          fontSize: 12,
+        headerStyle: {
+          backgroundColor: `${colors.secondaryColor}`,
         },
+        headerTitle: "Hello World",
+        headerShadowVisible: false,
       }}
     >
-      <Tab.Screen name={TASKSNAVIGATOR} component={TasksNavigator} />
-      <Tab.Screen name={CALENDARNAVIGATOR} component={CalendarNavigator} />
-      <Tab.Screen name={CLASSESNAVIGATOR} component={ClassesNavigator} />
-      <Tab.Screen name={MINENAVIGATOR} component={MineNavigator} />
+      {tabs.map((_, index) => {
+        return (
+          <Tab.Screen
+            key={index}
+            name={_.name}
+            component={_.component}
+            options={{
+              tabBarLabel: _.label,
+              tabBarIcon: _.iconName,
+              // headerTitle: _.label,
+            }}
+          />
+        );
+      })}
     </Tab.Navigator>
   );
 };
