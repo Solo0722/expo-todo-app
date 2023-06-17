@@ -117,7 +117,7 @@ const Signup = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container} bgColor={`${colors.secondaryColor}`}>
+    <View style={styles.container} bgColor={`${colors.accentColor}`}>
       {/* <Image
         source={require("../assets/images/todolist.png")}
         w={"70"}

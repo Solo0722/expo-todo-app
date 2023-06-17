@@ -34,14 +34,14 @@ const DrawerNavigator = () => {
         headerShown: false,
         headerLeft: () => <BackButton />,
         sceneContainerStyle: {
-          backgroundColor: `${colors.secondaryColor}`,
+          backgroundColor: `${colors.accentColor}`,
         },
         headerStyle: {
-          backgroundColor: `${colors.secondaryColor}`,
+          backgroundColor: `${colors.accentColor}`,
           elevation: 0,
         },
         headerTitleStyle: {
-          fontFamily: "bellota-bold",
+          fontFamily: "plusSans-bold",
           fontSize: 18,
         },
       }}

@@ -11,21 +11,25 @@ import GlobalProvider from "./src/context/context";
 import MainNavigator from "./src/navigations/MainNavigator";
 import "react-native-url-polyfill/auto";
 import { StatusBar } from "expo-status-bar";
+import { SafeAreaView } from "react-native-safe-area-context";
 enableScreens();
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    "bellota-thin": require("./src/assets/fonts/Bellota-Light.ttf"),
-    "bellota-light": require("./src/assets/fonts/Bellota-Light.ttf"),
-    "bellota-regular": require("./src/assets/fonts/Bellota-Regular.ttf"),
-    "bellota-bold": require("./src/assets/fonts/Bellota-Bold.ttf"),
+    "plusSans-thin": require("./src/assets/fonts/PlusSans/PlusJakartaSans-ExtraLight.ttf"),
+    "plusSans-light": require("./src/assets/fonts/PlusSans/PlusJakartaSans-Light.ttf"),
+    "plusSans-regular": require("./src/assets/fonts/PlusSans/PlusJakartaSans-Regular.ttf"),
+    "plusSans-medium": require("./src/assets/fonts/PlusSans/PlusJakartaSans-Medium.ttf"),
+    "plusSans-semibold": require("./src/assets/fonts/PlusSans/PlusJakartaSans-SemiBold.ttf"),
+    "plusSans-bold": require("./src/assets/fonts/PlusSans/PlusJakartaSans-Bold.ttf"),
+    "plusSans-extrabold": require("./src/assets/fonts/PlusSans/PlusJakartaSans-ExtraBold.ttf"),
   });
 
   const customTextProps = {
     style: {
-      fontFamily: "bellota-light",
+      fontFamily: "plusSans-regular",
     },
   };
 
@@ -47,7 +51,7 @@ export default function App() {
     <NativeBaseProvider theme={nativebaseTheme}>
       <NavigationContainer>
         <GlobalProvider>
-          <StatusBar backgroundColor="#f9fdff" />
+          <StatusBar backgroundColor="#181820" />
           <MainNavigator />
         </GlobalProvider>
       </NavigationContainer>

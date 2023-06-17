@@ -5,11 +5,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/todolist.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "splash": {
       "image": "./src/assets/images/app-splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#818cf8"
+      "backgroundColor": "#1c1c1c"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,7 +21,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/todolist.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#1c1c1c"
       }
     },
     "web": {

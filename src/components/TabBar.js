@@ -1,26 +1,17 @@
 import { StyleSheet } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
-import {
-  CALENDARNAVIGATOR,
-  CLASSESNAVIGATOR,
-  TASKSNAVIGATOR,
-} from "../constants/routeNames";
+import React from "react";
 import { Box, Pressable, Heading, VStack, Icon } from "native-base";
-import {
-  getFocusedRouteNameFromRoute,
-  useNavigation,
-  useRoute,
-} from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../theme/theme";
 
 const TabBar = ({ state, descriptors, navigation }) => {
   return (
-    <Box w="full" style={[styles.box]}>
+    <Box w="full" shadow="4" style={[styles.box]}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label = options.tabBarLabel || route.name;
-        const iconName = options.tabBarIcon || "home-sharp";
+        const activeIconName = options.tabBarActiveIcon || "home";
+        const inactiveIconName = options.tabBarInactiveIcon || "home-outline";
         const isFocused = state.index === index;
 
         const onPress = () => {
@@ -46,7 +37,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
           <Pressable
             key={`${index}--${route.key}`}
             style={styles.tabBarItem}
-            android_ripple={{ color: "#9ca3af", borderless: true }}
+            android_ripple={{ color: "", borderless: true }}
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
@@ -62,17 +53,17 @@ const TabBar = ({ state, descriptors, navigation }) => {
             >
               <Icon
                 as={Ionicons}
-                name={iconName}
+                name={isFocused ? activeIconName : inactiveIconName}
                 size={"md"}
-                color={isFocused ? "primary.400" : "coolGray.400"}
+                color={isFocused ? "white" : "coolGray.400"}
               />
-              {/* <Heading
-                fontSize={"xs"}
-                fontWeight={"600"}
-                color={isFocused ? "primary.500" : "coolGray.400"}
+              <Heading
+                fontSize={"10"}
+                // fontWeight={"600"}
+                color={isFocused ? "white" : "coolGray.400"}
               >
                 {label}
-              </Heading> */}
+              </Heading>
             </VStack>
           </Pressable>
         );
@@ -89,10 +80,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    height: 50,
-    elevation: 20,
-    shadowColor: "#000",
-    backgroundColor: colors.secondaryColor,
+    height: 60,
+    backgroundColor: colors.backgroundColor,
   },
   tabBarItem: {
     flex: 1,

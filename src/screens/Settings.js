@@ -69,7 +69,7 @@ const Settings = () => {
         />
         <Heading
           fontSize={"md"}
-          fontFamily="bellota-regular"
+          fontFamily="plusSans-regular"
           fontWeight={"600"}
           color={"black"}
         >

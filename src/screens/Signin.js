@@ -83,7 +83,7 @@ const Signin = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container} bgColor={`${colors.secondaryColor}`}>
+    <View style={styles.container} bgColor={`${colors.accentColor}`}>
       <SvgImage width={"300"} height={"200"} />
       <View style={styles.signinContainer}>
         <VStack space={4} mt="5">

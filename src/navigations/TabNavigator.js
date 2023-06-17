@@ -3,42 +3,47 @@ import React from "react";
 import {
   CALENDAR,
   CLASSES,
+  NOTES,
   PROFILE,
-  TASKS,
   TASKSNAVIGATOR,
 } from "../constants/routeNames";
 import TabBar from "../components/TabBar";
-import Tasks from "../screens/Tasks";
 import Classes from "../screens/Classes";
 import Calendar from "../screens/Calendar";
 import Profile from "../screens/Profile";
 import { colors } from "../theme/theme";
+import Notes from "../screens/Notes";
+import TabHeader from "../components/TabHeader";
 
 const TabNavigator = () => {
   const tabs = [
     {
-      name: TASKS,
-      label: "Tasks",
-      component: Tasks,
-      iconName: "reader-sharp",
+      name: NOTES,
+      label: "Notes",
+      component: Notes,
+      activeIconName: "reader",
+      inactiveIconName: "reader-outline",
     },
     {
       name: CLASSES,
       label: "Classes",
       component: Classes,
-      iconName: "school-sharp",
+      activeIconName: "school",
+      inactiveIconName: "school-outline",
     },
     {
       name: CALENDAR,
       label: "Calendar",
       component: Calendar,
-      iconName: "calendar-sharp",
+      activeIconName: "calendar-sharp",
+      inactiveIconName: "calendar-outline",
     },
     {
       name: PROFILE,
       label: "Profile",
       component: Profile,
-      iconName: "person-sharp",
+      activeIconName: "person",
+      inactiveIconName: "person-outline",
     },
   ];
 
@@ -51,15 +56,12 @@ const TabNavigator = () => {
       }}
       initialRouteName={TASKSNAVIGATOR}
       sceneContainerStyle={{
-        backgroundColor: `${colors.secondaryColor}`,
+        backgroundColor: `${colors.backgroundColor}`,
       }}
       screenOptions={{
         tabBarHideOnKeyboard: true,
-        headerStyle: {
-          backgroundColor: `${colors.secondaryColor}`,
-        },
-        headerTitle: "Hello World",
-        headerShadowVisible: false,
+        header: (props) => <TabHeader {...props} />,
+        headerShown: true,
       }}
     >
       {tabs.map((_, index) => {
@@ -70,8 +72,8 @@ const TabNavigator = () => {
             component={_.component}
             options={{
               tabBarLabel: _.label,
-              tabBarIcon: _.iconName,
-              // headerTitle: _.label,
+              tabBarActiveIcon: _.activeIconName,
+              tabBarInactiveIcon: _.inactiveIconName,
             }}
           />
         );

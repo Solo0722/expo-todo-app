@@ -138,7 +138,7 @@ const Task = ({ navigation, route }) => {
           />
           <Menu
             // w="190"
-            bgColor={`${colors.secondaryColor}`}
+            bgColor={`${colors.accentColor}`}
             placement={"bottom left"}
             safeAreaRight
             shouldOverlapWithTrigger={false}
@@ -274,7 +274,7 @@ const Task = ({ navigation, route }) => {
           <View style={styles.titleContainer}>
             <Menu
               // w="190"
-              bgColor={`${colors.secondaryColor}`}
+              bgColor={`${colors.accentColor}`}
               placement={"bottom left"}
               safeAreaRight
               shouldOverlapWithTrigger={false}

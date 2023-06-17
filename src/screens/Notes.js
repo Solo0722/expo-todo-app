@@ -1,14 +1,18 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
+import { FlatList, VStack, View } from "native-base";
+import Searchbar from "../components/Searchbar";
+import NotesCategoriesBar from "../components/NotesCategoriesBar";
+import NoteCard from "../components/NoteCard";
 
 const Notes = () => {
-  return (
-    <View>
-      <Text>Notes</Text>
-    </View>
-  );
+  return <View w="full" style={styles.container}></View>;
 };
 
 export default Notes;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 10,
+  },
+});

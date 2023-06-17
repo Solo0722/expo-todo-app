@@ -21,7 +21,7 @@ const AuthNavigator = () => {
     <AuthStack.Navigator
       initialRouteName={WELCOME}
       screenOptions={{
-        cardStyle: { backgroundColor: `${colors.secondaryColor}` },
+        cardStyle: { backgroundColor: `${colors.accentColor}` },
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         headerShown: false,
       }}

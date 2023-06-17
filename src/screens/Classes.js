@@ -112,7 +112,12 @@ const Classes = ({ navigation }) => {
       <FlatList
         ListEmptyComponent={<EmptyTasks />}
         ListHeaderComponent={
-          <Heading fontFamily={"bellota-regular"} fontSize={"md"} mb={4} mt={4}>
+          <Heading
+            fontFamily={"plusSans-regular"}
+            fontSize={"md"}
+            mb={4}
+            mt={4}
+          >
             Today
           </Heading>
         }
