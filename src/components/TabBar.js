@@ -6,7 +6,7 @@ import { colors } from "../theme/theme";
 
 const TabBar = ({ state, descriptors, navigation }) => {
   return (
-    <Box w="full" shadow="4" style={[styles.box]}>
+    <Box w="full" style={[styles.box]}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label = options.tabBarLabel || route.name;

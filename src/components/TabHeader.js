@@ -14,15 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const TabHeader = () => {
   return (
-    <Box
-      w="full"
-      style={styles.box}
-      px="2"
-      h="20"
-      zIndex={"10"}
-      shadow={"4"}
-      pt="8"
-    >
+    <Box w="full" style={styles.box} px="2" h="20" zIndex={"10"} pt="8">
       <Heading color={"primary.400"} fontSize="lg" fontWeight={"bold"}>
         My Notes
       </Heading>

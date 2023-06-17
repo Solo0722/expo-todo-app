@@ -8,10 +8,11 @@ export const CLASSESNAVIGATOR = "Classes Navigator";
 export const MINENAVIGATOR = "Mine Navigator";
 
 //screens
-export const NOTES = "NOTES";
+export const NOTES = "Notes";
+export const NOTESGROUP = "Notes Group";
+export const NOTE = "Note";
 export const CLASSES = "Classes";
 export const CALENDAR = "Calendar";
-export const TASK = "Task";
 export const WELCOME = "Welcome";
 export const SIGNIN = "Sign in";
 export const SIGNUP = "Sign up";

@@ -22,12 +22,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../theme/theme";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
 import moment from "moment";
-import AddSubTaskModal from "../components/modals/AddSubTaskModal";
 import AttachmentsActionSheet from "../components/AttachmentsActionSheet";
 import { GlobalContext } from "../context/context";
 import TaskAudio from "../components/TaskAudio";
-import TaskImage from "../components/TaskImage";
-import AddTaskNotesModal from "../components/modals/AddTaskNotesModal";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const Task = ({ navigation, route }) => {
@@ -405,18 +402,6 @@ const Task = ({ navigation, route }) => {
             }
             overScrollMode={"never"}
             showsVerticalScrollIndicator={false}
-          />
-          <AddSubTaskModal
-            showAddSubTaskModal={showAddSubTaskModal}
-            setShowAddSubTaskModal={setShowAddSubTaskModal}
-            subTasks={subTasks}
-            setSubTasks={setSubTasks}
-          />
-          <AddTaskNotesModal
-            showAddNotesModal={showAddNotesModal}
-            setShowAddNotesModal={setShowAddNotesModal}
-            notes={notes}
-            setNotes={setNotes}
           />
           <AttachmentsActionSheet
             isOpen={isOpen}

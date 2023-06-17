@@ -13,7 +13,7 @@ const BackButton = () => {
         variant={"ghost"}
         colorScheme={"coolGray"}
         rounded={"full"}
-        icon={<Icon as={Ionicons} name="arrow-back-sharp" />}
+        icon={<Icon as={Ionicons} name="arrow-back" />}
         onPress={() => goBack()}
       />
     </View>

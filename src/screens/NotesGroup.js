@@ -1,14 +1,14 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import React from "react";
-import { FlatList, VStack, View } from "native-base";
-import NotesGroupCard from "../components/NotesGroupCard";
+import { FlatList, View } from "native-base";
+import NoteCard from "../components/NoteCard";
 
-const Notes = () => {
+const NotesGroup = () => {
   return (
     <View px="2" w="full">
       <FlatList
         data={new Array(10)}
-        renderItem={() => <NotesGroupCard />}
+        renderItem={() => <NoteCard />}
         ItemSeparatorComponent={<View my="2" />}
         ListHeaderComponent={() => <View my="2" />}
         ListFooterComponent={() => <View my="2" />}
@@ -17,6 +17,6 @@ const Notes = () => {
   );
 };
 
-export default Notes;
+export default NotesGroup;
 
 const styles = StyleSheet.create({});

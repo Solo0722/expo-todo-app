@@ -4,6 +4,7 @@ export const colors = {
   primaryColor: "#ff0000",
   backgroundColor: "#181820",
   accentColor: "#21212b",
+  accentColor2: "#21212a",
   white: "#fff",
   black: "#000",
 };
