@@ -11,15 +11,51 @@ import {
 } from "native-base";
 import { colors } from "../theme/theme";
 import { Ionicons } from "@expo/vector-icons";
+import BackButton from "./BackButton";
 
-const TabHeader = () => {
+const TabHeader = ({
+  title = "My Notes",
+  iconButtons = [],
+  showBackBtn = false,
+}) => {
   return (
-    <Box w="full" style={styles.box} px="2" h="20" zIndex={"10"} pt="8">
-      <Heading color={"primary.400"} fontSize="lg" fontWeight={"bold"}>
-        My Notes
-      </Heading>
+    <Box
+      w="full"
+      display="flex"
+      flexDirection="row"
+      justifyContent="space-between"
+      alignItems="center"
+      bgColor={colors.backgroundColor}
+      px="2"
+      h="20"
+      zIndex={"10"}
+      pt="8"
+    >
+      <HStack
+        space="1"
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        {showBackBtn && <BackButton />}
+        <Heading color={"primary.400"} fontSize="lg" fontWeight={"bold"}>
+          {title}
+        </Heading>
+      </HStack>
       <HStack space="2">
-        <IconButton
+        {iconButtons.map((iconButton, index) => (
+          <IconButton
+            key={index}
+            variant={"ghost"}
+            colorScheme={"coolGray"}
+            rounded={"full"}
+            icon={
+              <Icon as={Ionicons} name={iconButton.iconName} color="white" />
+            }
+          />
+        ))}
+        {/* <IconButton
           variant={"ghost"}
           colorScheme={"coolGray"}
           rounded={"full"}
@@ -37,7 +73,7 @@ const TabHeader = () => {
           colorScheme={"coolGray"}
           rounded={"full"}
           icon={<Icon as={Ionicons} name="person-circle" color="white" />}
-        />
+        /> */}
       </HStack>
     </Box>
   );
@@ -45,12 +81,4 @@ const TabHeader = () => {
 
 export default TabHeader;
 
-const styles = StyleSheet.create({
-  box: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: colors.backgroundColor,
-  },
-});
+const styles = StyleSheet.create({});

@@ -23,6 +23,12 @@ const TabNavigator = () => {
       component: Notes,
       activeIconName: "reader",
       inactiveIconName: "reader-outline",
+      tabbarHeaderTitle: "My Notes",
+      tabHeaderBtns: [
+        { iconName: "add-circle", onPress: () => null },
+        { iconName: "search", onPress: () => null },
+        { iconName: "person-circle", onPress: () => null },
+      ],
     },
     {
       name: CLASSES,
@@ -30,6 +36,11 @@ const TabNavigator = () => {
       component: Classes,
       activeIconName: "school",
       inactiveIconName: "school-outline",
+      tabbarHeaderTitle: "My Classes",
+      tabHeaderBtns: [
+        { iconName: "add-circle", onPress: () => null },
+        { iconName: "search", onPress: () => null },
+      ],
     },
     {
       name: CALENDAR,
@@ -37,6 +48,11 @@ const TabNavigator = () => {
       component: Calendar,
       activeIconName: "calendar-sharp",
       inactiveIconName: "calendar-outline",
+      tabbarHeaderTitle: "Calendar",
+      tabHeaderBtns: [
+        // {iconName:"",onPress:() => null},
+        // {iconName:"",onPress:() => null},
+      ],
     },
     {
       name: PROFILE,
@@ -44,6 +60,11 @@ const TabNavigator = () => {
       component: Profile,
       activeIconName: "person",
       inactiveIconName: "person-outline",
+      tabbarHeaderTitle: "My Profile",
+      tabHeaderBtns: [
+        // {iconName:"",onPress:() => null},
+        // {iconName:"",onPress:() => null},
+      ],
     },
   ];
 
@@ -60,7 +81,6 @@ const TabNavigator = () => {
       }}
       screenOptions={{
         tabBarHideOnKeyboard: true,
-        header: (props) => <TabHeader {...props} />,
         headerShown: true,
       }}
     >
@@ -74,6 +94,15 @@ const TabNavigator = () => {
               tabBarLabel: _.label,
               tabBarActiveIcon: _.activeIconName,
               tabBarInactiveIcon: _.inactiveIconName,
+              header: (props) => (
+                <TabHeader
+                  {...props}
+                  title={_.tabbarHeaderTitle}
+                  iconButtons={_.tabHeaderBtns}
+                />
+              ),
+              headerShown:
+                _.name == CALENDAR || _.name == PROFILE ? false : true,
             }}
           />
         );

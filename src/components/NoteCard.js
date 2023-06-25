@@ -6,6 +6,7 @@ import {
   Heading,
   Icon,
   IconButton,
+  Image,
   Pressable,
   Text,
   VStack,
@@ -47,12 +48,6 @@ const NoteCard = () => {
             alignItems="center"
             justifyContent="space-between"
           >
-            {/* <IconButton
-            variant={"ghost"}
-            colorScheme={"coolGray"}
-            rounded={"full"}
-            icon={<Icon as={Ionicons} name="folder" color="primary.400" />}
-          /> */}
             <Button
               variant={"solid"}
               colorScheme={"coolGray"}
@@ -63,8 +58,6 @@ const NoteCard = () => {
               _text={{
                 color: "coolGray.400",
               }}
-
-              // icon={<Icon as={Ionicons} name="folder" color="coolGray.400" />}
             >
               {moment().format("MMMM D, YYYY")}
             </Button>
@@ -78,6 +71,13 @@ const NoteCard = () => {
               the 1500s, when an unknown printer lorem ipsum dolor sit amet.
             </Text>
           </VStack>
+          <Image
+            source={require("../assets/images/todolist.png")}
+            borderRadius={"md"}
+            w="full"
+            h="40"
+            alt="note-pic"
+          />
         </VStack>
       </Box>
     </Pressable>

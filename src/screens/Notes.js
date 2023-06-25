@@ -4,10 +4,14 @@ import { FlatList, VStack, View } from "native-base";
 import NotesGroupCard from "../components/NotesGroupCard";
 
 const Notes = () => {
+  const data = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+
   return (
     <View px="2" w="full">
       <FlatList
-        data={new Array(10)}
+        w="full"
+        keyExtractor={(item, index) => index.toString()}
+        data={data}
         renderItem={() => <NotesGroupCard />}
         ItemSeparatorComponent={<View my="2" />}
         ListHeaderComponent={() => <View my="2" />}

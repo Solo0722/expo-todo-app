@@ -1,9 +1,30 @@
 import { StyleSheet, Text } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { FlatList, View } from "native-base";
 import NoteCard from "../components/NoteCard";
+import TabHeader from "../components/TabHeader";
 
-const NotesGroup = () => {
+const NotesGroup = ({ navigation, route }) => {
+  // const {} =
+
+  useEffect(() => {
+    navigation.setOptions({
+      header: (props) => (
+        <TabHeader
+          {...props}
+          title={"Embedded Systems"}
+          iconButtons={[
+            { iconName: "add-circle", onPress: () => null },
+            { iconName: "search", onPress: () => null },
+            { iconName: "ellipsis-vertical", onPress: () => null },
+          ]}
+          showBackBtn={true}
+        />
+      ),
+      headerShown: true,
+    });
+  }, []);
+
   return (
     <View px="2" w="full">
       <FlatList

@@ -1,9 +1,24 @@
 import { StyleSheet } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Input, TextArea, VStack, View } from "native-base";
+import TabHeader from "../components/TabHeader";
 
-const Note = () => {
+const Note = ({ navigation }) => {
+  useEffect(() => {
+    navigation.setOptions({
+      header: (props) => (
+        <TabHeader
+          {...props}
+          title={"Embedded Systems 1"}
+          iconButtons={[{ iconName: "ellipsis-vertical", onPress: () => null }]}
+          showBackBtn={true}
+        />
+      ),
+      headerShown: true,
+    });
+  }, []);
+
   return (
     <View p="2" w="full">
       <VStack space="6">

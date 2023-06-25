@@ -8,7 +8,7 @@ const BackButton = () => {
   const { goBack } = useNavigation();
 
   return (
-    <View ml={"1"}>
+    <View>
       <IconButton
         variant={"ghost"}
         colorScheme={"coolGray"}

@@ -62,44 +62,25 @@ const Classes = ({ navigation }) => {
   ];
 
   const renderItem = ({ item }) => (
-    <Pressable
-      w="full"
-      bgColor={`${colors.itemColor}`}
-      android_ripple={{ color: "#9ca3af" }}
-      borderLeftColor={"fuchsia.500"}
-      borderLeftWidth={"3"}
-    >
-      <Box pl="4" pr="5" py="2" height={"64px"}>
-        <HStack alignItems="center" space={3}>
+    <Pressable w="full" android_ripple={{ color: "", foreground: true }}>
+      <Box
+        w="full"
+        px="2"
+        py="4"
+        borderRadius={"md"}
+        bgColor={colors.accentColor2}
+      >
+        <HStack alignItems="center" space={"2"}>
           <VStack space={1}>
-            <Text
-              color="coolGray.800"
-              _dark={{
-                color: "warmGray.50",
-              }}
-              bold
-            >
+            <Text color="white" bold>
               {item.fullName}
             </Text>
-            <Text
-              color="coolGray.600"
-              _dark={{
-                color: "warmGray.200",
-              }}
-              fontSize={"xs"}
-            >
+            <Text color="coolGray.400" fontSize={"xs"}>
               {moment().format("hh:mm")} - {moment().format("hh:mm  dddd")}
             </Text>
           </VStack>
           <Spacer />
-          <Text
-            fontSize="xs"
-            color="coolGray.800"
-            _dark={{
-              color: "warmGray.50",
-            }}
-            alignSelf="flex-start"
-          >
+          <Text fontSize="xs" color="coolGray.400" alignSelf="flex-start">
             {item.recentText}
           </Text>
         </HStack>
@@ -108,25 +89,25 @@ const Classes = ({ navigation }) => {
   );
 
   return (
-    <View style={styles.container}>
+    <View px="2" w="full">
       <FlatList
         ListEmptyComponent={<EmptyTasks />}
         ListHeaderComponent={
           <Heading
-            fontFamily={"plusSans-regular"}
-            fontSize={"md"}
-            mb={4}
-            mt={4}
+            fontSize={"sm"}
+            fontWeight={"bold"}
+            color="white"
+            mt="2"
+            mb="4"
           >
             Today
           </Heading>
         }
-        ItemSeparatorComponent={<View pt={1} pb={1} />}
+        ItemSeparatorComponent={<View my="2" />}
+        ListFooterComponent={() => <View my="2" />}
         data={data}
         renderItem={renderItem}
-        style={{ width: "100%" }}
       />
-      <FabComp onPress={() => navigation.navigate(ADDTOCLASSES)} />
     </View>
   );
 };

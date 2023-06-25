@@ -33,24 +33,10 @@ const MainStackNavigator = () => {
           component={TabNavigator}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name={NOTESGROUP}
-          component={NotesGroup}
-          options={{
-            header: (props) => <TabHeader {...props} />,
-            headerShown: true,
-          }}
-        />
+        <Stack.Screen name={NOTESGROUP} component={NotesGroup} />
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen
-          name={NOTE}
-          component={Note}
-          options={{
-            header: (props) => <TabHeader {...props} />,
-            headerShown: true,
-          }}
-        />
+        <Stack.Screen name={NOTE} component={Note} />
       </Stack.Group>
     </Stack.Navigator>
   );
