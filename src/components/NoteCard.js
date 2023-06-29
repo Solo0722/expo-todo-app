@@ -16,7 +16,7 @@ import { colors } from "../theme/theme";
 import { Ionicons } from "@expo/vector-icons";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
-import { NOTE, NOTESGROUP } from "../constants/routeNames";
+import { NOTE } from "../constants/routeNames";
 console.log(moment());
 
 const NoteCard = () => {
@@ -28,17 +28,12 @@ const NoteCard = () => {
       onPress={() => navigate(NOTE)}
     >
       <Box
-        //   h="40"
         minH={"40"}
         w="full"
         px="2"
         py="4"
-        //   shadow="2"
-        //   borderWidth="1"
-        //   borderColor="white"
-        borderRadius={"md"}
-        bgColor={colors.accentColor2}
-        //   opacity={0.5}
+        rounded={"lg"}
+        bgColor={colors.accentColor}
       >
         <VStack space="2">
           <View
@@ -62,7 +57,7 @@ const NoteCard = () => {
               {moment().format("MMMM D, YYYY")}
             </Button>
           </View>
-          <VStack space="1">
+          <VStack space="1" w="full">
             <Heading color="white" fontSize={"md"}>
               Embedded Systems
             </Heading>

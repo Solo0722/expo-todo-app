@@ -3,12 +3,10 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from "@react-navigation/stack";
-import { NOTE, NOTESGROUP, TABNAVIGATOR } from "../constants/routeNames";
 import { colors } from "../theme/theme";
 import { enableScreens } from "react-native-screens";
 import TabNavigator from "./TabNavigator";
-import NotesGroup from "../screens/NotesGroup";
-import TabHeader from "../components/TabHeader";
+import { NOTE, TABNAVIGATOR } from "../constants/routeNames";
 import Note from "../screens/Note";
 enableScreens();
 
@@ -16,12 +14,7 @@ const MainStackNavigator = () => {
   const Stack = createStackNavigator();
 
   return (
-    <Stack.Navigator
-      initialRouteName={TABNAVIGATOR}
-      screenOptions={{
-        cardStyle: { backgroundColor: `${colors.backgroundColor}` },
-      }}
-    >
+    <Stack.Navigator initialRouteName={TABNAVIGATOR}>
       <Stack.Group
         screenOptions={{
           cardStyle: { backgroundColor: `${colors.backgroundColor}` },
@@ -33,7 +26,6 @@ const MainStackNavigator = () => {
           component={TabNavigator}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name={NOTESGROUP} component={NotesGroup} />
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name={NOTE} component={Note} />

@@ -3,15 +3,11 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from "@react-navigation/stack";
-import Welcome from "../screens/Welcome";
-import { SIGNIN, SIGNUP, WELCOME } from "../constants/routeNames";
+import { SIGNIN, SIGNUP } from "../constants/routeNames";
 import Signin from "../screens/Signin";
 import Signup from "../screens/Signup";
 import { enableScreens } from "react-native-screens";
 import { colors } from "../theme/theme";
-import { useContext } from "react";
-import { GlobalContext } from "../context/context";
-import { useEffect } from "react";
 enableScreens();
 
 const AuthNavigator = () => {
@@ -19,16 +15,15 @@ const AuthNavigator = () => {
 
   return (
     <AuthStack.Navigator
-      initialRouteName={WELCOME}
+      initialRouteName={SIGNIN}
       screenOptions={{
-        cardStyle: { backgroundColor: `${colors.accentColor}` },
+        cardStyle: { backgroundColor: `${colors.backgroundColor}` },
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         headerShown: false,
       }}
     >
-      <AuthStack.Screen name={WELCOME} component={Welcome} />
-      <AuthStack.Screen name={SIGNUP} component={Signup} />
       <AuthStack.Screen name={SIGNIN} component={Signin} />
+      <AuthStack.Screen name={SIGNUP} component={Signup} />
     </AuthStack.Navigator>
   );
 };

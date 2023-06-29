@@ -1,10 +1,9 @@
 import { extendTheme } from "native-base";
 
 export const colors = {
-  primaryColor: "#ff0000",
+  primaryColor: "#abfc9d",
   backgroundColor: "#181820",
   accentColor: "#21212b",
-  accentColor2: "#21212a",
   white: "#fff",
   black: "#000",
 };
@@ -14,18 +13,24 @@ export const nativebaseTheme = extendTheme({
   initialColorMode: "dark",
   colors: {
     primary: {
-      50: "#ff9f9f",
-      100: "#ff7777",
-      200: "#ff5050",
-      300: "#ff2828",
-      400: "#ff0000",
-      500: "#e10707",
-      600: "#c30c0c",
-      700: "#a81111",
-      800: "#8e1313",
-      900: "#751515",
+      50: "#10eff119",
+      100: "#10eff110",
+      200: "#10eff111",
+      300: "#ecffe9",
+      400: "#cbfdc3",
+      500: "#abfc9d",
+      600: "#9af789",
+      700: "#8af277",
+      800: "#7bea67",
+      900: "#6de258",
     },
   },
+  components: {
+    Text: {
+      fontWeight: "bold",
+    },
+  },
+
   fontConfig: {
     PlusSans: {
       100: {

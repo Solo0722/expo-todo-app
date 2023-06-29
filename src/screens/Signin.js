@@ -11,6 +11,9 @@ import {
   View,
   VStack,
   useToast,
+  Box,
+  Divider,
+  Spacer,
 } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../theme/theme";
@@ -18,6 +21,7 @@ import SvgImage from "../assets/images/Audiobook.svg";
 import { userQuery } from "../helpers/sanity/sanityQueries";
 import { client } from "../helpers/sanity/sanityClient";
 import { GlobalContext } from "../context/context";
+import { SIGNUP } from "../constants/routeNames";
 
 const Signin = ({ navigation }) => {
   const toast = useToast();
@@ -83,34 +87,32 @@ const Signin = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container} bgColor={`${colors.accentColor}`}>
-      <SvgImage width={"300"} height={"200"} />
-      <View style={styles.signinContainer}>
-        <VStack space={4} mt="5">
+    <View
+      w="full"
+      h="full"
+      flex="1"
+      alignItems={"center"}
+      justifyContent={"center"}
+      p="4"
+    >
+      <View w="full">
+        <VStack space={"8"} mt="5">
           <FormControl isInvalid={"username" in errors}>
             <Input
-              variant={"filled"}
-              cursorColor={"black"}
-              bgColor={"coolGray.100"}
+              variant={"outline"}
+              cursorColor={"white"}
+              color={"white"}
+              bgColor="transparent"
+              borderColor={"coolGray.700"}
+              rounded={"lg"}
               _focus={{
-                bgColor: "coolGray.200",
-                borderColor: "none",
+                borderColor: "coolGray.600",
               }}
               _invalid={{
-                bgColor: "error.50",
-                borderColor: "none",
+                borderColor: "error.50",
               }}
-              colorScheme={"primary"}
-              InputLeftElement={
-                <Icon
-                  as={<Ionicons name="at-circle" />}
-                  ml="2"
-                  mr="2"
-                  color="primary.300"
-                />
-              }
+              colorScheme={"coolGray"}
               placeholder="Email"
-              color={"black"}
               onChangeText={(e) => handleChange(e, "username")}
             />
             {"username" in errors && (
@@ -121,29 +123,22 @@ const Signin = ({ navigation }) => {
           </FormControl>
           <FormControl isInvalid={"password" in errors}>
             <Input
-              variant={"filled"}
-              cursorColor={"black"}
-              bgColor={"coolGray.100"}
+              variant={"outline"}
+              cursorColor={"white"}
+              color={"white"}
+              bgColor="transparent"
+              borderColor={"coolGray.700"}
+              rounded={"lg"}
               _focus={{
-                bgColor: "coolGray.200",
-                borderColor: "none",
+                borderColor: "coolGray.600",
               }}
               _invalid={{
-                bgColor: "error.50",
-                borderColor: "none",
+                borderColor: "error.50",
               }}
-              colorScheme={"primary"}
+              colorScheme={"coolGray"}
               type="password"
-              InputLeftElement={
-                <Icon
-                  as={<Ionicons name="lock-closed" />}
-                  ml="2"
-                  mr="2"
-                  color="primary.300"
-                />
-              }
               placeholder="Password"
-              color={"black"}
+              isRequired
               onChangeText={(e) => handleChange(e, "password")}
             />
             {"password" in errors && (
@@ -156,24 +151,32 @@ const Signin = ({ navigation }) => {
                 fontSize: "xs",
                 fontWeight: "500",
                 color: "primary.500",
+                textDecoration: "none",
               }}
               alignSelf="flex-end"
-              mt="1"
+              mt="2"
             >
               Forget Password?
             </Link>
           </FormControl>
           <Button
-            mt="4"
+            bgColor={"primary.500"}
+            rounded={"lg"}
             colorScheme="primary"
+            _text={{
+              color: "black",
+              fontWeight: "bold",
+            }}
             isLoading={loading}
             onPress={submitLoginForm}
           >
-            Sign in
+            Login
           </Button>
-          <HStack mt="6" justifyContent="center">
+
+          <HStack top="64" justifyContent="center">
             <Text
-              fontSize="sm"
+              fontSize="xs"
+              fontWeight="500"
               color="coolGray.600"
               _dark={{
                 color: "warmGray.200",
@@ -183,11 +186,12 @@ const Signin = ({ navigation }) => {
             </Text>
             <Link
               _text={{
+                fontSize: "xs",
+                fontWeight: "500",
                 color: "primary.500",
-                fontWeight: "medium",
-                fontSize: "sm",
+                textDecoration: "none",
               }}
-              onPress={() => navigation.goBack()}
+              onPress={() => navigation.navigate(SIGNUP)}
             >
               Sign up
             </Link>
@@ -200,17 +204,4 @@ const Signin = ({ navigation }) => {
 
 export default Signin;
 
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    height: "100%",
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 50,
-    paddingHorizontal: 20,
-  },
-  signinContainer: {
-    width: "100%",
-  },
-});
+const styles = StyleSheet.create({});

@@ -65,7 +65,7 @@ const Settings = () => {
           as={Ionicons}
           name={item.iconName}
           size={"md"}
-          color={"primary.400"}
+          color={"primary.500"}
         />
         <Heading
           fontSize={"md"}

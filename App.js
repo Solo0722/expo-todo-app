@@ -5,13 +5,12 @@ import { setCustomText } from "react-native-global-props";
 import { NativeBaseProvider } from "native-base";
 import React, { useCallback } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { nativebaseTheme } from "./src/theme/theme";
+import { colors, nativebaseTheme } from "./src/theme/theme";
 import { enableScreens } from "react-native-screens";
 import GlobalProvider from "./src/context/context";
-import MainNavigator from "./src/navigations/MainNavigator";
 import "react-native-url-polyfill/auto";
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView } from "react-native-safe-area-context";
+import MainNavigator from "./src/navigations";
 enableScreens();
 
 SplashScreen.preventAutoHideAsync();
@@ -49,9 +48,14 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={nativebaseTheme}>
-      <NavigationContainer>
+      <NavigationContainer
+        theme={{
+          dark: true,
+          colors: { background: colors.backgroundColor, text: colors.white },
+        }}
+      >
         <GlobalProvider>
-          <StatusBar backgroundColor="#181820" />
+          <StatusBar backgroundColor="transparent" />
           <MainNavigator />
         </GlobalProvider>
       </NavigationContainer>

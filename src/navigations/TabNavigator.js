@@ -12,8 +12,8 @@ import Classes from "../screens/Classes";
 import Calendar from "../screens/Calendar";
 import Profile from "../screens/Profile";
 import { colors } from "../theme/theme";
-import Notes from "../screens/Notes";
 import TabHeader from "../components/TabHeader";
+import Notes from "../screens/Notes";
 
 const TabNavigator = () => {
   const tabs = [
@@ -24,11 +24,7 @@ const TabNavigator = () => {
       activeIconName: "reader",
       inactiveIconName: "reader-outline",
       tabbarHeaderTitle: "My Notes",
-      tabHeaderBtns: [
-        { iconName: "add-circle", onPress: () => null },
-        { iconName: "search", onPress: () => null },
-        { iconName: "person-circle", onPress: () => null },
-      ],
+      tabHeaderBtns: [{ iconName: "add-circle", onPress: () => null }],
     },
     {
       name: CLASSES,
@@ -81,7 +77,7 @@ const TabNavigator = () => {
       }}
       screenOptions={{
         tabBarHideOnKeyboard: true,
-        headerShown: true,
+        headerShown: false,
       }}
     >
       {tabs.map((_, index) => {
@@ -101,8 +97,8 @@ const TabNavigator = () => {
                   iconButtons={_.tabHeaderBtns}
                 />
               ),
-              headerShown:
-                _.name == CALENDAR || _.name == PROFILE ? false : true,
+              // headerShown:
+              //   _.name == CALENDAR || _.name == PROFILE ? false : true,
             }}
           />
         );

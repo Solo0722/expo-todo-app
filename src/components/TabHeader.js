@@ -39,7 +39,7 @@ const TabHeader = ({
         alignItems="center"
       >
         {showBackBtn && <BackButton />}
-        <Heading color={"primary.400"} fontSize="lg" fontWeight={"bold"}>
+        <Heading color={"primary.500"} fontSize="lg" fontWeight={"bold"}>
           {title}
         </Heading>
       </HStack>

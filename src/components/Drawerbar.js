@@ -50,7 +50,7 @@ const Drawerbar = () => {
     <View flex={"1"}>
       <View
         flex={"0.2"}
-        backgroundColor={"primary.400"}
+        backgroundColor={"primary.500"}
         alignItems={"flex-start"}
         justifyContent={"flex-end"}
         mb={5}
@@ -79,7 +79,7 @@ const Drawerbar = () => {
                 as={Ionicons}
                 name={link.iconName}
                 size={"md"}
-                color={"primary.400"}
+                color={"primary.500"}
               />
               <Heading
                 fontSize={"xs"}

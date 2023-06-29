@@ -2,16 +2,19 @@ import { StyleSheet } from "react-native";
 import { View, Input, Icon } from "native-base";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { colors } from "../theme/theme";
 
 const Searchbar = () => {
   return (
     <View mb="2">
       <Input
-        _focus={{
-          bgColor: "blueGray.200",
-          borderWidth: 0,
-        }}
         variant={"filled"}
+        rounded={"lg"}
+        borderWidth="0"
+        cursorColor={"white"}
+        color={"white"}
+        bgColor={colors.accentColor}
+        placeholderTextColor={"coolGray.400"}
         InputLeftElement={
           <Icon
             as={<Ionicons name="search-outline" />}
@@ -21,7 +24,6 @@ const Searchbar = () => {
           />
         }
         placeholder="Search by name or keyword"
-        bgColor="blueGray.100"
       />
     </View>
   );

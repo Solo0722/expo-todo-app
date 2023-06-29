@@ -7,7 +7,7 @@ const NotesCategoriesBar = () => {
     <Button
       variant={"unstyled"}
       _pressed={{
-        bgColor: "primary.400",
+        bgColor: "primary.500",
         color: "white",
       }}
       bgColor="blueGray.100"
