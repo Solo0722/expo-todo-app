@@ -4,28 +4,34 @@ import { FlatList, VStack, View } from "native-base";
 import NoteCard from "../components/NoteCard";
 import Searchbar from "../components/Searchbar";
 import TabHeader from "../components/TabHeader";
+import FabComp from "../components/FabComp";
+import EmptyComp from "../components/EmptyComp";
 
 const Notes = ({ navigation, route }) => {
   return (
     <SafeAreaView>
-      <View px="2" w="full">
+      <View px="2" w="full" h="full">
         <FlatList
-          data={new Array(10)}
+          data={[]}
           renderItem={() => <NoteCard />}
           ItemSeparatorComponent={<View my="2" />}
           ListHeaderComponent={() => (
-            <VStack>
-              <TabHeader
-                title="My Notes"
-                iconButtons={[{ iconName: "add-circle", onPress: () => null }]}
-              />
-              <View my="2">
+            <VStack space="2">
+              <TabHeader title="My Notes" />
+              <View mb="2">
                 <Searchbar />
               </View>
             </VStack>
           )}
+          ListEmptyComponent={
+            <EmptyComp
+              title="No notes available!"
+              subText="Click the + to create notes"
+            />
+          }
           ListFooterComponent={() => <View my="2" />}
         />
+        <FabComp />
       </View>
     </SafeAreaView>
   );

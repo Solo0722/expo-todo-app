@@ -55,7 +55,7 @@ export default function App() {
         }}
       >
         <GlobalProvider>
-          <StatusBar backgroundColor="transparent" />
+          <StatusBar backgroundColor={colors.backgroundColor} />
           <MainNavigator />
         </GlobalProvider>
       </NavigationContainer>

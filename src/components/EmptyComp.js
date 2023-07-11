@@ -3,32 +3,39 @@ import React from "react";
 import SvgImg from "../assets/images/reading.svg";
 import { Center, Heading, VStack } from "native-base";
 
-const EmptyTasks = () => {
+const EmptyComp = ({ title = "", subText = "", showImage = true }) => {
   return (
-    <Center flex={1} alignItems="center" justifyContent="center">
+    <Center
+      w="full"
+      h="full"
+      flex={1}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+    >
       <VStack space={2}>
-        <SvgImg width={200} height={200} />
+        {showImage && <SvgImg width={200} height={200} />}
         <Heading
-          fontSize={"sm"}
+          fontSize={"xs"}
           fontWeight={"bold"}
           textAlign="center"
           color={"coolGray.500"}
         >
-          No tasks available.
+          {title}
         </Heading>
         <Heading
-          fontSize={"sm"}
+          fontSize={"xs"}
           fontWeight={"bold"}
           textAlign="center"
           color={"coolGray.500"}
         >
-          Click the + to create tasks.
+          {subText}
         </Heading>
       </VStack>
     </Center>
   );
 };
 
-export default EmptyTasks;
+export default EmptyComp;
 
 const styles = StyleSheet.create({});

@@ -26,7 +26,6 @@ const TabHeader = ({
       justifyContent="space-between"
       alignItems="center"
       bgColor={colors.backgroundColor}
-      px="2"
       h="20"
       zIndex={"10"}
       pt="8"
@@ -55,25 +54,6 @@ const TabHeader = ({
             }
           />
         ))}
-        {/* <IconButton
-          variant={"ghost"}
-          colorScheme={"coolGray"}
-          rounded={"full"}
-          icon={<Icon as={Ionicons} name="add-circle" color="white" />}
-        />
-        <IconButton
-          variant={"ghost"}
-          colorScheme={"coolGray"}
-          rounded={"full"}
-          icon={<Icon as={Ionicons} name="search" color="white" />}
-        />
-
-        <IconButton
-          variant={"ghost"}
-          colorScheme={"coolGray"}
-          rounded={"full"}
-          icon={<Icon as={Ionicons} name="person-circle" color="white" />}
-        /> */}
       </HStack>
     </Box>
   );

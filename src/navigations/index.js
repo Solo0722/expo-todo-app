@@ -5,7 +5,7 @@ import AuthNavigator from "./AuthNavigator";
 const MainNavigator = () => {
   return (
     <>
-      <MainStackNavigator />
+      <AuthNavigator />
     </>
   );
 };

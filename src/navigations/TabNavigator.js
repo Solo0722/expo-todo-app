@@ -24,7 +24,9 @@ const TabNavigator = () => {
       activeIconName: "reader",
       inactiveIconName: "reader-outline",
       tabbarHeaderTitle: "My Notes",
-      tabHeaderBtns: [{ iconName: "add-circle", onPress: () => null }],
+      tabHeaderBtns: [
+        // { iconName: "add-circle", onPress: () => null }
+      ],
     },
     {
       name: CLASSES,
@@ -42,12 +44,12 @@ const TabNavigator = () => {
       name: CALENDAR,
       label: "Calendar",
       component: Calendar,
-      activeIconName: "calendar-sharp",
+      activeIconName: "calendar",
       inactiveIconName: "calendar-outline",
-      tabbarHeaderTitle: "Calendar",
+      tabbarHeaderTitle: "My Calendar",
       tabHeaderBtns: [
-        // {iconName:"",onPress:() => null},
-        // {iconName:"",onPress:() => null},
+        // { iconName: "add-circle", onPress: () => null },
+        // { iconName: "search", onPress: () => null },
       ],
     },
     {

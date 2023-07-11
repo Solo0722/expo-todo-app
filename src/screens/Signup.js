@@ -4,6 +4,7 @@ import {
   Button,
   Divider,
   FormControl,
+  Heading,
   HStack,
   Icon,
   IconButton,
@@ -118,43 +119,35 @@ const Signup = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container} bgColor={`${colors.backgroundColor}`}>
-      {/* <Image
-        source={require("../assets/images/todolist.png")}
-        w={"70"}
-        h={"70"}
-        rounded={"2xl"}
-        alt="logo"
-        mb={4}
-      /> */}
-      <SvgImage width={"300"} height={"200"} />
-      <View style={styles.signupContainer}>
-        <VStack space={4} mt="5">
-          <FormControl isRequired isInvalid={"username" in errors}>
+    <View
+      w="full"
+      h="full"
+      flex="1"
+      alignItems={"center"}
+      justifyContent={"center"}
+      p="4"
+    >
+      <View w="full">
+        <VStack space={"8"} mt="5">
+          <Heading fontWeight="bold" color="white">
+            Sign up
+          </Heading>
+          <FormControl isInvalid={"username" in errors}>
             <Input
-              variant={"filled"}
-              cursorColor={colors.white}
-              bgColor={colors.accentColor2}
+              variant={"outline"}
+              cursorColor={"white"}
+              color={"white"}
+              bgColor="transparent"
+              borderColor={"coolGray.700"}
+              rounded={"lg"}
               _focus={{
-                bgColor: colors.accentColor,
+                borderColor: "coolGray.600",
               }}
               _invalid={{
-                bgColor: "error.50",
+                borderColor: "error.50",
               }}
-              borderColor={"none"}
-              borderWidth={0}
-              color={"white"}
-              colorScheme={"primary"}
-              InputLeftElement={
-                <Icon
-                  as={<Ionicons name="person" />}
-                  ml="2"
-                  mr="2"
-                  color="primary.300"
-                />
-              }
+              colorScheme={"coolGray"}
               placeholder="Username"
-              value={signupFormData.username}
               onChangeText={(e) => handleChange(e, "username")}
             />
             {"username" in errors && (
@@ -163,66 +156,47 @@ const Signup = ({ navigation }) => {
               </FormControl.ErrorMessage>
             )}
           </FormControl>
-          <FormControl isRequired isInvalid={"email" in errors}>
+          <FormControl isInvalid={"email" in errors}>
             <Input
-              variant={"filled"}
-              cursorColor={colors.white}
-              bgColor={colors.accentColor2}
+              variant={"outline"}
+              color={"white"}
+              bgColor="transparent"
+              borderColor={"coolGray.700"}
+              rounded={"lg"}
               _focus={{
-                bgColor: colors.accentColor,
+                borderColor: "coolGray.600",
               }}
               _invalid={{
-                bgColor: "error.50",
+                borderColor: "error.50",
               }}
-              borderColor={"none"}
-              borderWidth={0}
-              color={"white"}
-              colorScheme={"primary"}
-              InputLeftElement={
-                <Icon
-                  as={<Ionicons name="at-circle" />}
-                  ml="2"
-                  mr="2"
-                  color="primary.300"
-                />
-              }
+              colorScheme={"coolGray"}
               placeholder="Email"
-              value={signupFormData.email}
               onChangeText={(e) => handleChange(e, "email")}
             />
-            {"email" in errors && (
+            {"username" in errors && (
               <FormControl.ErrorMessage>
-                {errors.email}
+                {errors.username}
               </FormControl.ErrorMessage>
             )}
           </FormControl>
-          <FormControl isRequired isInvalid={"password" in errors}>
+          <FormControl isInvalid={"password" in errors}>
             <Input
-              variant={"filled"}
-              cursorColor={colors.white}
-              bgColor={colors.accentColor2}
+              variant={"outline"}
+              color={"white"}
+              bgColor="transparent"
+              borderColor={"coolGray.700"}
+              rounded={"lg"}
               _focus={{
-                bgColor: colors.accentColor,
+                borderColor: "coolGray.600",
               }}
               _invalid={{
-                bgColor: "error.50",
+                borderColor: "error.50",
               }}
-              borderColor={"none"}
-              borderWidth={0}
-              color={"white"}
-              colorScheme={"primary"}
-              InputLeftElement={
-                <Icon
-                  as={<Ionicons name="lock-closed" />}
-                  ml="2"
-                  mr="2"
-                  color="primary.300"
-                />
-              }
+              colorScheme={"coolGray"}
+              type="password"
               placeholder="Password"
-              value={signupFormData.password}
+              isRequired
               onChangeText={(e) => handleChange(e, "password")}
-              autoComplete="password-new"
             />
             {"password" in errors && (
               <FormControl.ErrorMessage>
@@ -231,40 +205,39 @@ const Signup = ({ navigation }) => {
             )}
           </FormControl>
           <Button
-            mt="4"
             bgColor={"primary.500"}
+            rounded={"lg"}
             colorScheme="primary"
+            _text={{
+              color: "black",
+              fontWeight: "bold",
+            }}
+            _pressed={{
+              bgColor: "primary.600",
+            }}
             isLoading={loading}
             onPress={submitSignupForm}
           >
             Sign up
           </Button>
 
-          {/* <HStack mt="6" space="4" width="100%" justifyContent="center">
-            <IconButton
-              width="50%"
-              icon={<Icon as={Ionicons} name="logo-google" size="sm" />}
-              _icon={{ color: "red.400" }}
-              // colorScheme={"white"}
-              bgColor={"white"}
-              variant="solid"
-            />
-          </HStack> */}
-          <HStack mt="6" justifyContent="center">
+          <HStack top={"56"} justifyContent="center">
             <Text
-              fontSize="sm"
+              fontSize="xs"
+              fontWeight="500"
               color="coolGray.600"
               _dark={{
                 color: "warmGray.200",
               }}
             >
-              Already have an account.{" "}
+              Already have an account?{" "}
             </Text>
             <Link
               _text={{
-                color: "primary.500",
-                fontWeight: "medium",
-                fontSize: "sm",
+                fontSize: "xs",
+                fontWeight: "500",
+                color: `${colors.secondaryColor}`,
+                textDecoration: "none",
               }}
               onPress={() => navigation.navigate(SIGNIN)}
             >

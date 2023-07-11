@@ -14,6 +14,7 @@ import {
   Box,
   Divider,
   Spacer,
+  Heading,
 } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../theme/theme";
@@ -97,22 +98,24 @@ const Signin = ({ navigation }) => {
     >
       <View w="full">
         <VStack space={"8"} mt="5">
+          <Heading fontWeight="bold" color="white">
+            Sign in
+          </Heading>
           <FormControl isInvalid={"username" in errors}>
             <Input
+              color="white"
               variant={"outline"}
-              cursorColor={"white"}
-              color={"white"}
               bgColor="transparent"
               borderColor={"coolGray.700"}
               rounded={"lg"}
-              _focus={{
-                borderColor: "coolGray.600",
-              }}
               _invalid={{
                 borderColor: "error.50",
               }}
+              _focus={{
+                borderColor: "coolGray.600",
+              }}
               colorScheme={"coolGray"}
-              placeholder="Email"
+              placeholder="Username"
               onChangeText={(e) => handleChange(e, "username")}
             />
             {"username" in errors && (
@@ -124,7 +127,6 @@ const Signin = ({ navigation }) => {
           <FormControl isInvalid={"password" in errors}>
             <Input
               variant={"outline"}
-              cursorColor={"white"}
               color={"white"}
               bgColor="transparent"
               borderColor={"coolGray.700"}
@@ -150,7 +152,7 @@ const Signin = ({ navigation }) => {
               _text={{
                 fontSize: "xs",
                 fontWeight: "500",
-                color: "primary.500",
+                color: `${colors.secondaryColor}`,
                 textDecoration: "none",
               }}
               alignSelf="flex-end"
@@ -166,6 +168,9 @@ const Signin = ({ navigation }) => {
             _text={{
               color: "black",
               fontWeight: "bold",
+            }}
+            _pressed={{
+              bgColor: "primary.600",
             }}
             isLoading={loading}
             onPress={submitLoginForm}
@@ -188,7 +193,7 @@ const Signin = ({ navigation }) => {
               _text={{
                 fontSize: "xs",
                 fontWeight: "500",
-                color: "primary.500",
+                color: `${colors.secondaryColor}`,
                 textDecoration: "none",
               }}
               onPress={() => navigation.navigate(SIGNUP)}

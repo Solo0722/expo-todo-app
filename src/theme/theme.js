@@ -2,8 +2,9 @@ import { extendTheme } from "native-base";
 
 export const colors = {
   primaryColor: "#abfc9d",
-  backgroundColor: "#181820",
-  accentColor: "#21212b",
+  secondaryColor: "#A8A8FF",
+  backgroundColor: "#000",
+  accentColor: "#131313",
   white: "#fff",
   black: "#000",
 };

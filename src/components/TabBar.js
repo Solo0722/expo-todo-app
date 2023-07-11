@@ -6,7 +6,15 @@ import { colors } from "../theme/theme";
 
 const TabBar = ({ state, descriptors, navigation }) => {
   return (
-    <Box w="full" style={[styles.box]}>
+    <Box
+      w="full"
+      display="flex"
+      flexDirection="row"
+      justifyContent="space-between"
+      alignItems="center"
+      height="60"
+      backgroundColor={colors.backgroundColor}
+    >
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label = options.tabBarLabel || route.name;
@@ -37,7 +45,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
           <Pressable
             key={`${index}--${route.key}`}
             style={styles.tabBarItem}
-            android_ripple={{ color: "", borderless: true }}
+            android_ripple={{ color: "", borderless: true, foreground: true }}
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}

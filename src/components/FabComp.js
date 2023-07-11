@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Fab, Icon } from "native-base";
+import { colors } from "../theme/theme";
 
 const FabComp = ({ styles = {}, onPress }) => {
   return (
@@ -12,9 +13,15 @@ const FabComp = ({ styles = {}, onPress }) => {
         size="sm"
         placement={"bottom-right"}
         bottom={"30"}
-        colorScheme={"primary"}
+        // colorScheme={"primary"}
+        bgColor={colors.secondaryColor}
         icon={
-          <Icon color="white" as={<Ionicons name="add-sharp" />} size="sm" />
+          <Icon
+            color={colors.backgroundColor}
+            as={<Ionicons name="add-sharp" />}
+            size="md"
+            fontWeight={"black"}
+          />
         }
         style={styles}
         onPress={onPress}

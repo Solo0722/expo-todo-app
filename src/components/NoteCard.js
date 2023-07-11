@@ -33,7 +33,9 @@ const NoteCard = () => {
         px="2"
         py="4"
         rounded={"lg"}
-        bgColor={colors.accentColor}
+        // bgColor={colors.accentColor}
+        borderWidth={"1"}
+        borderColor={colors.accentColor}
       >
         <VStack space="2">
           <View
@@ -44,12 +46,13 @@ const NoteCard = () => {
             justifyContent="space-between"
           >
             <Button
-              variant={"solid"}
+              variant={"unstyled"}
               colorScheme={"coolGray"}
-              bgColor={colors.backgroundColor}
-              rounded={"full"}
-              borderRadius={"full"}
+              bgColor={colors.accentColor}
               size="xs"
+              displat={"flex"}
+              flexDirection={"row"}
+              alignItems={"flex-start"}
               _text={{
                 color: "coolGray.400",
               }}
@@ -66,13 +69,13 @@ const NoteCard = () => {
               the 1500s, when an unknown printer lorem ipsum dolor sit amet.
             </Text>
           </VStack>
-          <Image
+          {/* <Image
             source={require("../assets/images/todolist.png")}
             borderRadius={"md"}
             w="full"
             h="40"
             alt="note-pic"
-          />
+          /> */}
         </VStack>
       </Box>
     </Pressable>

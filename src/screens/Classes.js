@@ -1,21 +1,19 @@
-import { StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
 import React from "react";
 import {
-  Box,
   FlatList,
   Heading,
-  HStack,
-  Pressable,
-  Spacer,
-  Text,
+  ScrollView,
+  SectionList,
   View,
   VStack,
 } from "native-base";
 import FabComp from "../components/FabComp";
-import { ADDTOCLASSES } from "../constants/routeNames";
-import EmptyTasks from "../components/EmptyTasks";
-import moment from "moment";
+import EmptyComp from "../components/EmptyComp";
+import TabHeader from "../components/TabHeader";
+import ClassCard from "../components/ClassCard";
 import { colors } from "../theme/theme";
+import Searchbar from "../components/Searchbar";
 
 const Classes = ({ navigation }) => {
   const data = [
@@ -61,54 +59,38 @@ const Classes = ({ navigation }) => {
     },
   ];
 
-  const renderItem = ({ item }) => (
-    <Pressable w="full" android_ripple={{ color: "", foreground: true }}>
-      <Box
-        w="full"
-        px="2"
-        py="4"
-        borderRadius={"md"}
-        bgColor={colors.accentColor2}
-      >
-        <HStack alignItems="center" space={"2"}>
-          <VStack space={1}>
-            <Text color="white" bold>
-              {item.fullName}
-            </Text>
-            <Text color="coolGray.400" fontSize={"xs"}>
-              {moment().format("hh:mm")} - {moment().format("hh:mm  dddd")}
-            </Text>
-          </VStack>
-          <Spacer />
-          <Text fontSize="xs" color="coolGray.400" alignSelf="flex-start">
-            {item.recentText}
-          </Text>
-        </HStack>
-      </Box>
-    </Pressable>
-  );
-
   return (
-    <View px="2" w="full">
-      <FlatList
-        ListEmptyComponent={<EmptyTasks />}
-        ListHeaderComponent={
-          <Heading
-            fontSize={"sm"}
-            fontWeight={"bold"}
-            color="white"
-            mt="2"
-            mb="4"
-          >
-            Today
-          </Heading>
-        }
-        ItemSeparatorComponent={<View my="2" />}
-        ListFooterComponent={() => <View my="2" />}
-        data={data}
-        renderItem={renderItem}
-      />
-    </View>
+    <SafeAreaView>
+      <View px="2" w="full" h="full">
+        <SectionList
+          data={[]}
+          sections={[]}
+          renderSectionHeader={({ section }) => (
+            <Heading fontSize={"sm"} fontWeight={"bold"} color="primary.500">
+              Others
+            </Heading>
+          )}
+          // renderItem={() => <NoteCard />}
+          ItemSeparatorComponent={<View my="2" />}
+          ListHeaderComponent={() => (
+            <VStack space="2">
+              <TabHeader title="My Classes" />
+              <View mb="2">
+                <Searchbar />
+              </View>
+            </VStack>
+          )}
+          ListEmptyComponent={
+            <EmptyComp
+              title="No classes available!"
+              subText="Click the + to create classes"
+            />
+          }
+          ListFooterComponent={() => <View my="2" />}
+        />
+        <FabComp />
+      </View>
+    </SafeAreaView>
   );
 };
 
